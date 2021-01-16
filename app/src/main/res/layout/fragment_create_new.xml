@@ -17,7 +17,7 @@
         android:text="Create new volunteer"
         android:textAlignment="center"
         android:textColor="#040303"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,13 +44,13 @@
             android:layout_marginEnd="8dp"
             android:text="Title:"
             android:textColor="#040303"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_title_input"
+            android:id="@+id/create_page_filed_title_input_layout"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -62,10 +62,11 @@
             app:placeholderText="insert Title">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_title_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Insert Title"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -77,14 +78,14 @@
             android:layout_marginEnd="8dp"
             android:text="Location:"
             android:textColor="#040303"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input" />
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_location_input"
+            android:id="@+id/create_page_filed_location_input_layout"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginStart="8dp"
@@ -96,10 +97,11 @@
             app:placeholderText="insert Location">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_location_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Insert Location"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -111,10 +113,10 @@
             android:layout_marginEnd="8dp"
             android:text="Date:"
             android:textColor="#040303"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_location_input" />
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_location_input_layout" />
 
         <EditText
             android:id="@+id/create_page_filed_date_input"
@@ -125,7 +127,7 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="date"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_text" />
@@ -139,7 +141,7 @@
             android:layout_marginEnd="8dp"
             android:text="Type:"
             android:textColor="#040303"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input" />
@@ -153,7 +155,7 @@
             android:layout_marginEnd="8dp"
             android:text="Image:"
             android:textColor="#040303"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_image_btn"
             app:layout_constraintEnd_toStartOf="@+id/create_page_filed_image_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +173,7 @@
             android:text="Choose Image"
             android:textAllCaps="false"
             android:textColor="#BA68C8"
-            android:textSize="14dp"
+            android:textSize="14sp"
             app:backgroundTint="#00FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_image"
             app:layout_constraintEnd_toStartOf="@+id/create_page_filed_image"
@@ -185,6 +187,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="user image"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/create_page_filed_image_btn"
@@ -200,12 +203,13 @@
             android:layout_marginEnd="8dp"
             android:text="Description:"
             android:textColor="#040303"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_image_btn" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_description_input"
+            android:id="@+id/create_page_filed_description_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -216,10 +220,11 @@
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_text">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_description_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Describe volunteer"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
