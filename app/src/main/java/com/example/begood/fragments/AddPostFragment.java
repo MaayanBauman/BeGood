@@ -3,16 +3,17 @@ package com.example.begood.fragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.begood.R;
-import com.example.begood.adapters.PostsAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddPostFragment extends Fragment {
 
@@ -24,6 +25,8 @@ public class AddPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_new, container, false);
+
+        setHasOptionsMenu(true);
 
         // Cancel post
         Button cancelBtn = view.findViewById(R.id.create_page_cancel_btn);
@@ -45,5 +48,13 @@ public class AddPostFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        //super.onCreateOptionsMenu(menu, inflater);
+        Log.d("TAG","add post menu");
+        menu.clear();
+        inflater.inflate(R.menu.add_post_menu,menu);
     }
 }
