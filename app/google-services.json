@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "278747963757",
+    "project_id": "begood-1610807415816",
+    "storage_bucket": "begood-1610807415816.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278747963757:android:48469a30ac25db8c0bba64",
+        "android_client_info": {
+          "package_name": "com.example.begood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278747963757-5gfn2eafoi068opgejlgqr71lska0vf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLdQzpgx79SkgwjPK25dXNM9buBx-1y4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278747963757-5gfn2eafoi068opgejlgqr71lska0vf1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
