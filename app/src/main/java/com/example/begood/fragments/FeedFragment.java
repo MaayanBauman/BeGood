@@ -17,10 +17,11 @@ import com.example.begood.models.Model;
 import com.example.begood.models.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
-
+    List<Post> posts = new LinkedList<Post>();
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -36,10 +37,15 @@ public class FeedFragment extends Fragment {
         rv.hasFixedSize();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
-        List<Post> data = Model.instance.getAllPosts();
+        Model.instance.getAllPosts(new Model.GetAllPostsListener() {
+            @Override
+            public void onComplete(List<Post> data) {
+                posts = data;
+            }
+        });
 
         PostsAdapter adapter = new PostsAdapter(getLayoutInflater());
-        adapter.data = data;
+        adapter.data = posts;
         rv.setAdapter(adapter);
 
         adapter.setOnClickListener(new PostsAdapter.OnItemClickListener() {
