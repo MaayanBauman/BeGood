@@ -18,11 +18,8 @@ public class Post {
     private String spacialNeeds;
     private String author;
 
-    public Post(){
-
-    }
-
-    public Post(String title, String description, String time, String location, String type, String spacialNeeds, String author){
+    public  Post() {}
+    public Post(String title, String description, String time, String location, String type, String spacialNeeds, String author) {
         this.title = title;
         this.description = description;
         this.time = time;
@@ -30,6 +27,7 @@ public class Post {
         this.type = type;
         this.spacialNeeds = spacialNeeds;
         this.author = author;
+        this.id = "id " + Math.random();
     }
 
     public String getId() {
@@ -67,6 +65,7 @@ public class Post {
     public void setId(@NonNull String id) {
         this.id = id;
     }
+
     public void setTitle(String title) {
         this.title= title;
     }

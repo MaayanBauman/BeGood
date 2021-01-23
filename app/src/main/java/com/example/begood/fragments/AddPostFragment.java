@@ -65,16 +65,15 @@ public class AddPostFragment extends Fragment {
 //                String time = timeTV.getText().toString();
 //                String type = typeTV.getText().toString();
 //                String location = locationTV.getText().toString();
-                String spacialNeeds = "2";
-                String author = "me2";
-                String title = "title2";
-                String description = "description2";
-                String location = "location2";
-                String time ="time2";
-                String type="type2";
-                
-                Post newPost = new Post(title,description,time,type,location,spacialNeeds,author);
-                Model.instance.AddPost(newPost,new Model.AddPostListener() {
+                String spacialNeeds = "";
+                String author = "me";
+                String title = "title";
+                String description = "description";
+                String location = "location";
+                String time = "time";
+                String type = "type";
+                Post newPost = new Post(title, description, time, type, location, spacialNeeds, author);
+                Model.instance.AddPost(newPost, new Model.AddPostListener() {
                     @Override
                     public void onComplete() {
                         Navigation.findNavController(view).popBackStack();
@@ -91,6 +90,6 @@ public class AddPostFragment extends Fragment {
         //super.onCreateOptionsMenu(menu, inflater);
         Log.d("TAG","add post menu");
         menu.clear();
-        inflater.inflate(R.menu.add_post_menu,menu);
+        inflater.inflate(R.menu.add_post_menu, menu);
     }
 }
