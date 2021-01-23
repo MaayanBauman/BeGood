@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -22,6 +23,9 @@ import java.util.List;
 
 public class FeedFragment extends Fragment {
     List<Post> posts = new LinkedList<Post>();
+    ProgressBar pb;
+    FloatingActionButton addNewBtn;
+    PostsAdapter adapter;
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -32,21 +36,21 @@ public class FeedFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        // Create postsList with rv
+        setHasOptionsMenu(true);
+
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
+        pb = view.findViewById(R.id.feed_progress_bar);
+        addNewBtn = view.findViewById(R.id.feed_add_post_btn);
+
+        pb.setVisibility(View.INVISIBLE);
+
+        adapter = new PostsAdapter(getLayoutInflater());
+        rv.setAdapter(adapter);
+
+        // Create postsList with rv
         rv.hasFixedSize();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
-        Model.instance.getAllPosts(new Model.GetAllPostsListener() {
-            @Override
-            public void onComplete(List<Post> data) {
-                posts = data;
-            }
-        });
-
-        PostsAdapter adapter = new PostsAdapter(getLayoutInflater());
-        adapter.data = posts;
-        rv.setAdapter(adapter);
 
         adapter.setOnClickListener(new PostsAdapter.OnItemClickListener() {
             @Override
@@ -59,10 +63,29 @@ public class FeedFragment extends Fragment {
         });
 
         // Navigate to create new post fragment
-        FloatingActionButton addNewBtn = view.findViewById(R.id.feed_add_post_btn);
         addNewBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_feedFrg_to_addPostFrg));
 
+        reloadData();
         return view;
     }
+
+    void reloadData (){
+        pb.setVisibility(View.VISIBLE);
+        addNewBtn.setEnabled(false);
+        Model.instance.getAllPosts(new Model.GetAllPostsListener() {
+            @Override
+            public void onComplete(List<Post> data) {
+                posts = data;
+                for (Post post : data) {
+                    Log.d("TAG","post id: " + post.getId());
+                }
+                pb.setVisibility(View.INVISIBLE);
+                addNewBtn.setEnabled(true);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+
 
 }
