@@ -9,7 +9,6 @@ public class Post {
     @PrimaryKey
     @NonNull
     private String id;
-    //image;
     private String title;
     private String description;
     private String time;
@@ -17,18 +16,7 @@ public class Post {
     private String type;
     private String spacialNeeds;
     private String author;
-
-    public  Post() {}
-    public Post(String title, String description, String time, String location, String type, String spacialNeeds, String author) {
-        this.title = title;
-        this.description = description;
-        this.time = time;
-        this.location = location;
-        this.type = type;
-        this.spacialNeeds = spacialNeeds;
-        this.author = author;
-        this.id = "id " + Math.random();
-    }
+    private String image;
 
     public String getId() {
         return this.id;
@@ -62,6 +50,8 @@ public class Post {
         return this.author;
     }
 
+    public String getImage() { return this.image; }
+
     public void setId(@NonNull String id) {
         this.id = id;
     }
@@ -93,4 +83,6 @@ public class Post {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public void setImage(String imageUrl) { this.image = imageUrl; }
 }

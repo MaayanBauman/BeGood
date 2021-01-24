@@ -1,5 +1,7 @@
 package com.example.begood.models;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 public class Model {
@@ -35,5 +37,10 @@ public class Model {
     public void deletePost(String postId, DeleteListener listener){
         modelFirebase.delete(postId, listener);
     }
+    public interface UploadImageListener extends Listener<String>{ }
 
+    public void uploadImage(Bitmap imageBmp, String name, final UploadImageListener listener) {
+        modelFirebase.uploadImage(imageBmp, name, listener);
     }
+
+}
