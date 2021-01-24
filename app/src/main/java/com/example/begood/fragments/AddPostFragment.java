@@ -38,12 +38,7 @@ public class AddPostFragment extends Fragment {
 
         // Cancel post
         Button cancelBtn = view.findViewById(R.id.create_page_cancel_btn);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).popBackStack();
-            }
-        });
+        cancelBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_global_feedFrg));
 
         // Save new post
         Button saveBtn = view.findViewById(R.id.create_page_submit_btn);
@@ -87,7 +82,6 @@ public class AddPostFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        //super.onCreateOptionsMenu(menu, inflater);
         Log.d("TAG","add post menu");
         menu.clear();
         inflater.inflate(R.menu.add_post_menu, menu);
