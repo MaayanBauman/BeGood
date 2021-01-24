@@ -1,30 +1,39 @@
 package com.example.begood.models;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Model {
     public final static Model instance = new Model();
 
-    private Model(){
-        for(int i=0;i<10;i++) {
-            Post post = new Post();
-            post.id = "" + i;
-//            post.image;
-            post.title = "Post Title #" + i;
-            post.description = "Description #" + i;
-            post.time = "Time #" + i;
-            post.location = "Location #" + i;
-            post.spacialNeeds = "Spacial Needs #" + i;
-            post.type = "Type #" + i;
-            post.author = "Author #" + i;
-            data.add(post);
-        }
+    ModelFireBase modelFirebase = new ModelFireBase();
+    ModelSQL modelSql = new ModelSQL();
+
+    private Model() {
     }
 
-    List<Post> data = new LinkedList<Post>();
-
-    public List<Post> getAllPosts() {
-        return data;
+    public interface Listener<T>{
+        void onComplete(T result);
     }
-}
+
+    public interface GetAllPostsListener extends Listener<List<Post>>{}
+    public void getAllPosts(final GetAllPostsListener listener) {
+        modelFirebase.getAllPosts(listener);
+    }
+    public interface GetPostByIdListener extends Listener<Post>{}
+    public void getPostById(String id, final GetPostByIdListener listener) {
+        modelFirebase.getPostById(id, listener);
+    }
+
+    public interface AddPostListener {
+        void onComplete();
+    }
+    public void AddPost(Post post, final AddPostListener listener) {
+        modelFirebase.addPost(post, listener);
+    }
+
+    interface  DeleteListener extends AddPostListener{}
+    public void deletePost(String postId, DeleteListener listener){
+        modelFirebase.delete(postId, listener);
+    }
+
+    }

@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.begood.R;
 import com.example.begood.models.Post;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
-    public List<Post> data;
+    public List<Post> data = new LinkedList<Post>();
     LayoutInflater inflater;
 
     public PostsAdapter(LayoutInflater inflater){
@@ -43,6 +44,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (data != null ){
+            return data.size();
+        }
+        return 0;
     }
 }

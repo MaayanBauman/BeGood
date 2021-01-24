@@ -45,13 +45,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public void bindData(Post post, int position) {
 //        image.set(post.image);
-        title.setText(post.title);
-        description.setText(post.description);
-        time.setText(post.time);
-        location.setText(post.location);
-        spacialNeeds.setText(post.spacialNeeds);
-        type.setText(post.type);
-        author.setText(post.author);
+        title.setText(post.getTitle());
+        description.setText(post.getDescription());
+        time.setText(post.getTime());
+        location.setText(post.getLocation());
+        spacialNeeds.setText(post.getSpacialNeeds());
+        type.setText(post.getType());
+        author.setText(post.getAuthor());
         this.position = position;
     }
 }

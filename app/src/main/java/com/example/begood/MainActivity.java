@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Tag", "login");
                 Intent intent = new Intent(getApplicationContext(), FeedActivity.class);
                 startActivity(intent);
-//                setContentView(R.layout.activity_feed);
+                setContentView(R.layout.activity_feed);
             }
         });
     }

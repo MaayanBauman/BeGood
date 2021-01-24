@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:contentDescription="@string"
+        android:contentDescription="image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:autoText="true"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:autoText="true"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="date"
         android:textColor="#FF0C0909"
@@ -98,13 +98,13 @@
         app:layout_constraintTop_toTopOf="@+id/post_time_value"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/post_location_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string"
+        android:inputType="text"
         android:textColor="#FF0C0909"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/post_location_title"
@@ -112,7 +112,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/post_location_title"
         app:layout_constraintTop_toBottomOf="@+id/post_description"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.75"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/post_type_title"
@@ -125,18 +126,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
 
-    <TextView
+    <EditText
         android:id="@+id/post_type_value"
         android:layout_width="0dp"
         android:layout_height="26dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
-        android:text="@string"
+        android:inputType="text"
         android:textColor="#FF0C0909"
         app:layout_constraintBottom_toBottomOf="@+id/post_type_title"
         app:layout_constraintEnd_toStartOf="@+id/post_needs_title"
         app:layout_constraintStart_toEndOf="@+id/post_type_title"
-        app:layout_constraintTop_toTopOf="@+id/post_type_title" />
+        app:layout_constraintTop_toTopOf="@+id/post_type_title"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/post_needs_title"
@@ -151,19 +153,20 @@
         app:layout_constraintStart_toEndOf="@+id/post_type_value"
         app:layout_constraintTop_toTopOf="@+id/post_type_value" />
 
-    <TextView
+    <EditText
         android:id="@+id/post_needs_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string"
+        android:inputType="text"
         android:textColor="#FF0C0909"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/post_needs_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/post_needs_title"
-        app:layout_constraintTop_toTopOf="@+id/post_needs_title" />
+        app:layout_constraintTop_toTopOf="@+id/post_needs_title"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/post_author_title"
@@ -176,16 +179,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_type_title" />
 
-    <TextView
+    <EditText
         android:id="@+id/post_author_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string"
+        android:inputType="text"
         android:textColor="#FF0C0909"
         app:layout_constraintBottom_toBottomOf="@+id/post_author_title"
         app:layout_constraintStart_toEndOf="@+id/post_author_title"
-        app:layout_constraintTop_toBottomOf="@+id/post_type_title" />
+        app:layout_constraintTop_toBottomOf="@+id/post_type_title"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/post_subscrive_btn"

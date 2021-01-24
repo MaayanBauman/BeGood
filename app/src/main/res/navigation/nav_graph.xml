@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.example.begood.fragments.FeedFragment"
+        android:label="All Volunteers"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFrg_to_addPostFrg"
+            app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_feedFrg_to_postInfoFrg"
+            app:destination="@id/postInfoFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_postInfoFragment"
+            app:destination="@id/postInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.begood.fragments.AddPostFragment"
+        android:label="Add new Volunteer"
+        tools:layout="@layout/fragment_create_new" />
+    <fragment
+        android:id="@+id/postInfoFragment"
+        android:name="com.example.begood.fragments.PostInfoFragment"
+        android:label="Volunteer Info"
+        tools:layout="@layout/fragment_post_info">
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.begood.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <action android:id="@+id/action_global_profileFrg" app:destination="@id/profileFragment" />
+    <action android:id="@+id/action_global_feedFrg" app:destination="@id/feedFragment" />
+</navigation>
