@@ -41,4 +41,10 @@
         tools:layout="@layout/fragment_profile" />
     <action android:id="@+id/action_global_profileFrg" app:destination="@id/profileFragment" />
     <action android:id="@+id/action_global_feedFrg" app:destination="@id/feedFragment" />
+    <fragment
+        android:id="@+id/myVolunteersFragment"
+        android:name="com.example.begood.fragments.MyVolunteersFragment"
+        android:label="fragment_my_voluteers"
+        tools:layout="@layout/fragment_my_voluteers" />
+    <action android:id="@+id/action_global_myVolunteersFrg" app:destination="@id/myVolunteersFragment" />
 </navigation>

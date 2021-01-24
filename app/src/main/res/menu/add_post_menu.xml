@@ -8,8 +8,8 @@
         android:title="Profile"
         app:showAsAction="always" />
     <item
-        android:id="@+id/menu_myVolunteers"
-        android:title="My Voluteers" />
+        android:id="@+id/myVolunteersFragment"
+        android:title="My Volunteers" />
     <item
         android:id="@+id/feedFragment"
         android:title="All Volunteers" />
