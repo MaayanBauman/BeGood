@@ -55,7 +55,7 @@ public class FeedFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 Log.d("TAG","post was clicked " + position);
-                String postId = "" + position;
+                String postId = posts.get(position).getId();
                 FeedFragmentDirections.ActionFeedFrgToPostInfoFrg action = FeedFragmentDirections.actionFeedFrgToPostInfoFrg(postId);
                 Navigation.findNavController(view).navigate(action);
             }
@@ -74,12 +74,13 @@ public class FeedFragment extends Fragment {
         Model.instance.getAllPosts(new Model.GetAllPostsListener() {
             @Override
             public void onComplete(List<Post> data) {
+                posts = data;
                 for (Post post : data) {
                     Log.d("TAG","post id: " + post.getId());
                 }
                 pb.setVisibility(View.INVISIBLE);
                 addNewBtn.setEnabled(true);
-                adapter.data = data;
+                adapter.data = posts;
                 adapter.notifyDataSetChanged();
             }
         });
