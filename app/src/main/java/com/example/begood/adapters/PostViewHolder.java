@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.begood.R;
 import com.example.begood.models.Post;
+import com.squareup.picasso.Picasso;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostsAdapter.OnItemClickListener listener;
@@ -44,7 +45,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindData(Post post, int position) {
-//        image.set(post.image);
+        if (post.getImage() != null) {
+            Picasso.get().load(post.getImage()).placeholder(R.drawable.avatar).into(image);
+        }
         title.setText(post.getTitle());
         description.setText(post.getDescription());
         time.setText(post.getTime());

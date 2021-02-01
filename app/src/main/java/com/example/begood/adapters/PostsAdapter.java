@@ -30,7 +30,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
     }
 
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.volunteer_post,parent,false);
+        View view = inflater.inflate(R.layout.volunteer_post, parent,false);
         PostViewHolder holder = new PostViewHolder(view);
         holder.listener = listener;
         return holder;
