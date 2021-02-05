@@ -81,6 +81,7 @@ public class AddPostFragment extends Fragment {
 
         // Cancel post
         cancelBtn = view.findViewById(R.id.create_page_cancel_btn);
+
         cancelBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_global_feedFrg));
 
         // Save new post

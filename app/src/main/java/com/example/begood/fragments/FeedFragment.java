@@ -3,10 +3,15 @@ package com.example.begood.fragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,6 +42,19 @@ public class FeedFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
+        TextView greetingMessage = view.findViewById(R.id.greeting_message);
+        String userName = LoginFragment.getAccount().getDisplayName();
+        greetingMessage.setText("שלום " + userName);
+
+        Button logoutButton = view.findViewById(R.id.logout_button);
+        view.findViewById(R.id.logout_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Tag", "logout");
+                LoginFragment.getmGoogleSignInClient().signOut();
+                Navigation.findNavController(view).navigate(R.id.action_feedFragment_pop);
+            }
+        });
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
         pb = view.findViewById(R.id.feed_progress_bar);
         addNewBtn = view.findViewById(R.id.feed_add_post_btn);
@@ -84,5 +102,12 @@ public class FeedFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        Log.d("TAG","feed menu");
+        menu.clear();
+        inflater.inflate(R.menu.main, menu);
     }
 }

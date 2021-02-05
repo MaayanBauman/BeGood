@@ -43,4 +43,10 @@ public class Model {
         modelFirebase.uploadImage(imageBmp, name, listener);
     }
 
+    public interface AddUserListener {
+        void onComplete();
+    }
+    public void AddUser(User user, final AddUserListener listener) {
+        modelFirebase.addUser(user, listener);
+    }
 }

@@ -112,4 +112,22 @@ public class ModelFireBase {
             }
         });
     }
+
+    public void addUser(User user, Model.AddUserListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(user.getEmail())
+                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG","user added successfully");
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG","fail adding post :(");
+                listener.onComplete();
+            }
+        });
+    }
 }

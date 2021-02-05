@@ -36,6 +36,7 @@ public class ModelSQL {
     public interface AddPostListener {
         void onComplete();
     }
+
     public void AddPost(Post post, final Model.AddPostListener listener) {
         class MyAsyncTask2 extends AsyncTask {
             @Override
