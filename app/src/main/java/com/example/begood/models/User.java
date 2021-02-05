@@ -10,17 +10,23 @@ public class User implements Serializable {
 
     @PrimaryKey
     @NonNull
+    private String _id;
     private String _email;
     private String _fullname;
     private String _image_url;
 
-    public User(String email, String fullname, Uri image_url){
+    public User(String id, String email, String fullname, Uri image_url){
+        this.setId(id);
         this.setEmail(email);
         this.setFullname(fullname);
         this.setImageURL(image_url);
     }
 
     // getters
+    public String getId(){
+        return this._id;
+    }
+
     public String getEmail(){
         return this._email;
     }
@@ -34,6 +40,9 @@ public class User implements Serializable {
     }
 
     //setters
+    public void setId(String id){
+        this._id = id;
+    }
 
     public void setEmail(String email){
         this._email = email;

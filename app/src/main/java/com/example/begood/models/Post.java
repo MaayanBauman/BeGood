@@ -18,6 +18,9 @@ public class Post {
     private String author;
     private String image;
 
+    public Post(){
+        this.setId("id" +Math.random());
+    }
     public String getId() {
         return this.id;
     }

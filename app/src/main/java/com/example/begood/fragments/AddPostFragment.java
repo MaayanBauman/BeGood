@@ -39,6 +39,7 @@ public class AddPostFragment extends Fragment {
     // Fragment members
     TextInputEditText titleTIEV;
     TextInputEditText descriptionTIEV;
+    TextInputEditText specialNeedsTIEV;
     Button imageBtn;
     ImageView imageIV;
     EditText timeEV;
@@ -68,6 +69,7 @@ public class AddPostFragment extends Fragment {
         timeEV = view.findViewById(R.id.create_page_filed_date_input);
         typeTV = view.findViewById(R.id.create_page_filed_type_text);
         locationTIEV = view.findViewById(R.id.create_page_filed_location_input);
+        specialNeedsTIEV = view.findViewById(R.id.create_page_filed_needs_input);
 
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,13 +108,12 @@ public class AddPostFragment extends Fragment {
         newPost.setDescription(descriptionTIEV.getText().toString());
         newPost.setTime(timeEV.getText().toString());
         newPost.setLocation(locationTIEV.getText().toString());
+        newPost.setSpacialNeeds(specialNeedsTIEV.getText().toString());
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
-        newPost.setSpacialNeeds("need");
         newPost.setType("Type");
-        newPost.setAuthor("me");
-        newPost.setId("id" + Math.random());
+        newPost.setAuthor(LoginFragment.getAccount().getId());
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
             @Override
             public void onComplete(String url) {

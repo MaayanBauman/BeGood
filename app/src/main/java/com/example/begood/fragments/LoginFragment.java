@@ -102,7 +102,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-            User newUser = new User(account.getEmail(),account.getDisplayName(),account.getPhotoUrl());
+            User newUser = new User(account.getId(), account.getEmail(),account.getDisplayName(),account.getPhotoUrl());
 
             Model.instance.AddUser(newUser, new Model.AddUserListener() {
                 @Override
