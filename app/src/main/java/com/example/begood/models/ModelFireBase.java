@@ -12,7 +12,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -25,19 +24,15 @@ public class ModelFireBase {
 
     public void getAllPosts(final Model.GetAllPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<Post> data = new LinkedList<Post>();
-                if (task.isSuccessful()){
-                    for (DocumentSnapshot doc:task.getResult()) {
-                        Log.d("POST", "doc " + doc.toString());
-                        Post post = doc.toObject(Post.class);
-                        data.add(post);
-                    }
+        db.collection("posts").get().addOnCompleteListener(task -> {
+            List<Post> data = new LinkedList<Post>();
+            if (task.isSuccessful()){
+                for (DocumentSnapshot doc: task.getResult()) {
+                    Post post = doc.toObject(Post.class);
+                    data.add(post);
                 }
-                listener.onComplete(data);
             }
+            listener.onComplete(data);
         });
     }
 
@@ -115,7 +110,7 @@ public class ModelFireBase {
 
     public void addUser(User user, Model.AddUserListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(user.getEmail())
+        db.collection("users").document(user.getId())
                 .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -125,8 +120,36 @@ public class ModelFireBase {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("TAG","fail adding post :(");
+                Log.d("TAG","fail adding user :(");
                 listener.onComplete();
+            }
+        });
+    }
+    public void updateUser(User user, Model.UpdateUserListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(user.getId())
+                .set(user).addOnSuccessListener(aVoid -> {
+                    Log.d("TAG","user update successfully");
+                    listener.onComplete();
+                }).addOnFailureListener(e -> {
+                    Log.d("TAG","fail update user :(");
+                    listener.onComplete();
+                });
+    }
+
+    public void getUserById(@NonNull String id, Model.GetUserByIdListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                User user = null;
+                if (task.isSuccessful()){
+                    DocumentSnapshot doc = task.getResult();
+                    if (doc != null) {
+                        user = task.getResult().toObject(User.class);
+                    }
+                }
+                listener.onComplete(user);
             }
         });
     }

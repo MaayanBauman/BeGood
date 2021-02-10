@@ -1,58 +1,67 @@
 package com.example.begood.models;
-import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity(tableName = "users")
 public class User implements Serializable {
 
     @PrimaryKey
     @NonNull
     private String _id;
     private String _email;
-    private String _fullname;
+    private String _fullName;
     private String _image_url;
+    @TypeConverters(PostArrayConverter.class)
+    private List<Post> _registeredPosts;
+    public User(){
+        this.setId("id" + Math.random());
+    }
 
-    public User(String id, String email, String fullname, Uri image_url){
+    public User(String id, String email, String fullName, String image_url){
         this.setId(id);
         this.setEmail(email);
-        this.setFullname(fullname);
-        this.setImageURL(image_url);
+        this.setFullName(fullName);
+        this.set_image_url(image_url);
+        ArrayList<Post> regPosts = new ArrayList<>();
+        this.setRegisteredPosts(regPosts);
     }
 
     // getters
     public String getId(){
         return this._id;
     }
-
     public String getEmail(){
         return this._email;
     }
-
-    public String getFullname(){
-        return this._fullname;
+    public String getFullName(){
+        return this._fullName;
     }
+    public String get_image_url() {return _image_url;}
 
-    public String getImageURL(){
-        return this._image_url;
+
+    public List<Post> getRegisteredPosts(){
+        return this._registeredPosts;
     }
 
     //setters
     public void setId(String id){
         this._id = id;
     }
-
     public void setEmail(String email){
         this._email = email;
     }
-
-    public void setFullname(String fullname){
-        this._fullname = fullname;
+    public void setFullName(String fullName){
+        this._fullName = fullName;
     }
-
-    public void setImageURL(Uri image_url){
-        this._image_url = image_url.toString();
+    public void set_image_url(String image_url){
+        this._image_url = image_url;
     }
+    public void setRegisteredPosts(List<Post> registeredPosts) { this._registeredPosts = registeredPosts; }
 }

@@ -49,4 +49,15 @@ public class Model {
     public void AddUser(User user, final AddUserListener listener) {
         modelFirebase.addUser(user, listener);
     }
+    public interface UpdateUserListener {
+        void onComplete();
+    }
+    public void UpdateUser(User user, final UpdateUserListener listener) {
+        modelFirebase.updateUser(user, listener);
+    }
+
+    public interface GetUserByIdListener extends Listener<User>{}
+    public void GetUserById(String userId, final GetUserByIdListener listener) {
+        modelFirebase.getUserById(userId, listener);
+    }
 }

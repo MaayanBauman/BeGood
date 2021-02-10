@@ -1,7 +1,6 @@
 package com.example.begood.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,10 +26,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
-    List<Post> posts = new LinkedList<Post>();
+    List<Post> posts = new LinkedList<>();
     ProgressBar pb;
     FloatingActionButton addNewBtn;
     PostsAdapter adapter;
+
     public FeedFragment() {
         // Required empty public constructor
     }
@@ -47,13 +47,9 @@ public class FeedFragment extends Fragment {
         greetingMessage.setText("שלום " + userName);
 
         Button logoutButton = view.findViewById(R.id.logout_button);
-        view.findViewById(R.id.logout_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Tag", "logout");
-                LoginFragment.getmGoogleSignInClient().signOut();
-                Navigation.findNavController(view).navigate(R.id.action_feedFragment_pop);
-            }
+        view.findViewById(R.id.logout_button).setOnClickListener(view1 -> {
+            LoginFragment.getmGoogleSignInClient().signOut();
+            Navigation.findNavController(view1).navigate(R.id.action_feedFragment_pop);
         });
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
         pb = view.findViewById(R.id.feed_progress_bar);
@@ -69,16 +65,6 @@ public class FeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
 
-        adapter.setOnClickListener(new PostsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Log.d("TAG","post was clicked " + position);
-                String postId = posts.get(position).getId();
-                FeedFragmentDirections.ActionFeedFrgToPostInfoFrg action = FeedFragmentDirections.actionFeedFrgToPostInfoFrg(postId);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
-
         // Navigate to create new post fragment
         addNewBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_feedFrg_to_addPostFrg));
 
@@ -89,24 +75,17 @@ public class FeedFragment extends Fragment {
     void reloadData(){
         pb.setVisibility(View.VISIBLE);
         addNewBtn.setEnabled(false);
-        Model.instance.getAllPosts(new Model.GetAllPostsListener() {
-            @Override
-            public void onComplete(List<Post> data) {
-                posts = data;
-                for (Post post : data) {
-                    Log.d("TAG","post id: " + post.getId());
-                }
-                pb.setVisibility(View.INVISIBLE);
-                addNewBtn.setEnabled(true);
-                adapter.data = posts;
-                adapter.notifyDataSetChanged();
-            }
+        Model.instance.getAllPosts(data -> {
+            posts = data;
+            pb.setVisibility(View.INVISIBLE);
+            addNewBtn.setEnabled(true);
+            adapter.data = posts;
+            adapter.notifyDataSetChanged();
         });
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        Log.d("TAG","feed menu");
         menu.clear();
         inflater.inflate(R.menu.main, menu);
     }

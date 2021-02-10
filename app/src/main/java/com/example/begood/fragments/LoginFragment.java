@@ -49,12 +49,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
         account = GoogleSignIn.getLastSignedInAccount(view.getContext());
-        signInButton = (SignInButton) view.findViewById(R.id.login_button);
+        signInButton = view.findViewById(R.id.login_button);
 
         TextView textView = (TextView) signInButton.getChildAt(0);
         textView.setText("התחברות עם חשבון גוגל");
 
-        view.findViewById(R.id.login_button).setOnClickListener((View.OnClickListener) this);
+        view.findViewById(R.id.login_button).setOnClickListener(this);
 
         return view;
     }
@@ -102,13 +102,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-            User newUser = new User(account.getId(), account.getEmail(),account.getDisplayName(),account.getPhotoUrl());
+            User newUser = new User(account.getId(), account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString());
 
-            Model.instance.AddUser(newUser, new Model.AddUserListener() {
-                @Override
-                public void onComplete() {            // Signed in successfully, show authenticated UI.
-                    updateUI(account);
-                }
+            Model.instance.AddUser(newUser, () -> {            // Signed in successfully, show authenticated UI.
+                updateUI(account);
             });
 
         } catch (ApiException e) {

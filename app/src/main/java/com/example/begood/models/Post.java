@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "posts")
 public class Post {
     @PrimaryKey
     @NonNull
@@ -19,7 +19,7 @@ public class Post {
     private String image;
 
     public Post(){
-        this.setId("id" +Math.random());
+        this.setId("id" + Math.random());
     }
     public String getId() {
         return this.id;

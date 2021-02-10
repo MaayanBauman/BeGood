@@ -1,6 +1,8 @@
 package com.example.begood.adapters;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,8 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.begood.R;
+import com.example.begood.fragments.LoginFragment;
+import com.example.begood.models.Model;
 import com.example.begood.models.Post;
+import com.example.begood.models.User;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostsAdapter.OnItemClickListener listener;
@@ -24,6 +32,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     TextView spacialNeeds;
     TextView type;
     TextView author;
+    Button subscribe;
+    String userId;
+    User currUser;
+    boolean isSubscribed;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -35,13 +47,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         spacialNeeds = itemView.findViewById(R.id.post_needs_value);
         type = itemView.findViewById(R.id.post_type_value);
         author = itemView.findViewById(R.id.post_author_value);
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClick(position);
-            }
-        });
+        subscribe = itemView.findViewById(R.id.post_subscribe_btn);
+        userId = LoginFragment.getAccount().getId();
     }
 
     public void bindData(Post post, int position) {
@@ -54,7 +61,50 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         location.setText(post.getLocation());
         spacialNeeds.setText(post.getSpacialNeeds());
         type.setText(post.getType());
-        author.setText(post.getAuthor());
         this.position = position;
+        Model.instance.GetUserById(post.getAuthor(), user -> {
+            if(user != null){
+                author.setText(user.getFullName());
+            } else {
+                Log.d("Error", "couldn't find user with ID:" + userId);
+            }
+        });
+        Model.instance.GetUserById(userId, user -> {
+            if(user != null){
+                currUser = user;
+                isSubscribed = currUser.getRegisteredPosts().contains(post);
+                if (isSubscribed) {
+                    subscribe.setText("unsubscribe");
+                } else {
+                    subscribe.setText("subscribe");
+                }
+
+                subscribe.setOnClickListener(new View.OnClickListener() {
+                    List<Post> registeredPosts = new ArrayList<>();
+
+                    @Override
+                    public void onClick(View view) {
+                        if (isSubscribed) {
+                            int postIndex = registeredPosts.indexOf(post);
+                            registeredPosts.remove(postIndex);
+                        } else {
+                            registeredPosts.add(post);
+                        }
+                        currUser.setRegisteredPosts(registeredPosts);
+                        Model.instance.UpdateUser(currUser, () -> {
+                            if (isSubscribed) {
+                                subscribe.setText("subscribe");
+                                isSubscribed = false;
+                            } else {
+                                subscribe.setText("unsubscribe");
+                                isSubscribed = true;
+                            }
+                        });
+                    }
+                });
+            } else {
+                Log.d("Error", "couldn't find user with ID:" + userId);
+            }
+        });
     }
 }

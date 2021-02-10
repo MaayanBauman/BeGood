@@ -13,15 +13,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
-    public List<Post> data = new LinkedList<Post>();
+    public List<Post> data = new LinkedList<>();
     LayoutInflater inflater;
 
     public PostsAdapter(LayoutInflater inflater){
         this.inflater = inflater;
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
+    public interface OnItemClickListener {
+        void onItemClick(Post data);
     }
     private OnItemClickListener listener;
 

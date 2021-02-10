@@ -1,7 +1,6 @@
 package com.example.begood.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,15 +22,11 @@ public class MyVolunteersFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_voluteers, container, false);
         setHasOptionsMenu(true);
-
-        Log.d("TAG","my volunteers page");
-
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        Log.d("TAG","my volunteers menu");
         menu.clear();
         inflater.inflate(R.menu.my_volunteers_menu, menu);
     }
