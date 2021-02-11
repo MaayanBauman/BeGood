@@ -113,7 +113,7 @@ public class AddPostFragment extends Fragment {
         Bitmap bitmap = drawable.getBitmap();
 
         newPost.setType("Type");
-        newPost.setAuthor(LoginFragment.getAccount().getId());
+        newPost.setAuthorId(LoginFragment.getAccount().getId());
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
             @Override
             public void onComplete(String url) {

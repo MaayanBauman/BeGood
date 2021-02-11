@@ -60,4 +60,10 @@ public class Model {
     public void GetUserById(String userId, final GetUserByIdListener listener) {
         modelFirebase.getUserById(userId, listener);
     }
+
+    public interface GetUserPostsListener extends Listener<List<Post>>{}
+    public void GetUserPosts(String userId, final GetUserPostsListener listener) {
+        modelFirebase.getUserPostsd(userId, listener);
+    }
+
 }

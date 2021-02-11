@@ -30,6 +30,8 @@ public class FeedFragment extends Fragment {
     ProgressBar pb;
     FloatingActionButton addNewBtn;
     PostsAdapter adapter;
+    // TODO: pass user in navAction instead of get from db!
+    // User user = FeedFragmentArgs.fromBundle(getArguments()).getUser();
 
     public FeedFragment() {
         // Required empty public constructor
@@ -47,7 +49,7 @@ public class FeedFragment extends Fragment {
         greetingMessage.setText("שלום " + userName);
 
         Button logoutButton = view.findViewById(R.id.logout_button);
-        view.findViewById(R.id.logout_button).setOnClickListener(view1 -> {
+        logoutButton.setOnClickListener(view1 -> {
             LoginFragment.getmGoogleSignInClient().signOut();
             Navigation.findNavController(view1).navigate(R.id.action_feedFragment_pop);
         });

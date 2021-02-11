@@ -139,18 +139,33 @@ public class ModelFireBase {
 
     public void getUserById(@NonNull String id, Model.GetUserByIdListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                User user = null;
-                if (task.isSuccessful()){
-                    DocumentSnapshot doc = task.getResult();
-                    if (doc != null) {
-                        user = task.getResult().toObject(User.class);
+        db.collection("users").document(id).get().addOnCompleteListener(task -> {
+            User user = null;
+            if (task.isSuccessful()){
+                DocumentSnapshot doc = task.getResult();
+                if (doc != null) {
+                    user = task.getResult().toObject(User.class);
+                }
+            }
+            listener.onComplete(user);
+        });
+    }
+
+    public void getUserPostsd(@NonNull String userId, final Model.GetUserPostsListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(userId).get().addOnCompleteListener(task -> {
+            User user = null;
+            List<Post> data = new LinkedList<Post>();
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc = task.getResult();
+                if (doc != null) {
+                    user = task.getResult().toObject(User.class);
+                    for (Post post: user.getRegisteredPosts()) {
+                        data.add(post);
                     }
                 }
-                listener.onComplete(user);
             }
+            listener.onComplete(data);
         });
     }
 }

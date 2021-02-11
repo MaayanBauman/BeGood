@@ -24,26 +24,45 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="user"
-            app:argType="com.example.begood.models.User"
-            app:nullable="true" />
+            app:argType="com.example.begood.models.User" />
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.begood.fragments.AddPostFragment"
         android:label="Add new Volunteer"
-        tools:layout="@layout/fragment_create_new" />
+        tools:layout="@layout/fragment_create_new" >
+        <argument
+            android:name="user"
+            app:argType="com.example.begood.models.User" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.begood.fragments.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" />
-    <action android:id="@+id/action_global_profileFrg" app:destination="@id/profileFragment" />
-    <action android:id="@+id/action_global_feedFrg" app:destination="@id/feedFragment" />
+        tools:layout="@layout/fragment_profile" >
+        <argument
+            android:name="user"
+            app:argType="com.example.begood.models.User" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_profileFrg"
+        app:destination="@id/profileFragment" />
+    <action
+        android:id="@+id/action_global_feedFrg"
+        app:destination="@id/feedFragment" />
     <fragment
         android:id="@+id/myVolunteersFragment"
         android:name="com.example.begood.fragments.MyVolunteersFragment"
         android:label="My Volunteers"
-        tools:layout="@layout/fragment_my_voluteers" />
+        tools:layout="@layout/fragment_my_voluteers" >
+        <argument
+            android:name="user"
+            app:argType="com.example.begood.models.User" />
+    </fragment>
     <action android:id="@+id/action_global_myVolunteersFrg" app:destination="@id/myVolunteersFragment" />
+    <argument
+        android:name="user"
+        app:argType="com.example.begood.models.User"
+        app:nullable="true" />
     <action android:id="@+id/action_global_loginFrg" app:destination="@id/loginFragment" />
 </navigation>

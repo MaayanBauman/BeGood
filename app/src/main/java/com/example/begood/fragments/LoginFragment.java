@@ -30,7 +30,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     public static GoogleSignInAccount account;
     private static final String TAG = "Main Fragment";
     private static final int RC_SIGN_IN = 7;
-
+    User user;
     SignInButton signInButton;
     View view;
 
@@ -102,9 +102,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-            User newUser = new User(account.getId(), account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString());
+             user = new User(account.getId(), account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString());
 
-            Model.instance.AddUser(newUser, () -> {            // Signed in successfully, show authenticated UI.
+            Model.instance.AddUser(user, () -> {            // Signed in successfully, show authenticated UI.
                 updateUI(account);
             });
 
@@ -118,7 +118,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
 
     private void updateUI(Object o) {
         if (o instanceof GoogleSignInAccount) {
-            Navigation.findNavController(view).navigate(R.id.action_global_feedFrg);
+            String userId = ((GoogleSignInAccount) o).getId();
+            //Model.instance.GetUserById(userId, user -> {
+//                if(user != null){
+                    //TODO: pass user in navAction instead of get from db!
+//                    NavGraphDirections.ActionGlobalFeedFrg directions = LoginFragmentDirections.actionGlobalFeedFrg(user);
+//                    Navigation.findNavController(view).navigate(directions);
+                    Navigation.findNavController(view).navigate(R.id.action_global_feedFrg);
+
+//                } else {
+//                    Log.d("Error", "couldn't find user with ID:" + userId);
+//                }
+            //});
         } else {
             Log.i(TAG, "UI updated");
         }

@@ -62,7 +62,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         spacialNeeds.setText(post.getSpacialNeeds());
         type.setText(post.getType());
         this.position = position;
-        Model.instance.GetUserById(post.getAuthor(), user -> {
+        Model.instance.GetUserById(post.getAuthorId(), user -> {
             if(user != null){
                 author.setText(user.getFullName());
             } else {

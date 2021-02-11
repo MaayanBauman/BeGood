@@ -15,7 +15,7 @@ public class Post {
     private String location;
     private String type;
     private String spacialNeeds;
-    private String author;
+    private String authorId;
     private String image;
 
     public Post(){
@@ -49,8 +49,8 @@ public class Post {
         return this.location;
     }
 
-    public String getAuthor() {
-        return this.author;
+    public String getAuthorId() {
+        return this.authorId;
     }
 
     public String getImage() { return this.image; }
@@ -83,8 +83,8 @@ public class Post {
         this.location = location;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public void setImage(String imageUrl) { this.image = imageUrl; }
