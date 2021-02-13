@@ -44,8 +44,6 @@ public class User implements Serializable {
         return this._fullName;
     }
     public String get_image_url() {return _image_url;}
-
-
     public List<Post> getRegisteredPosts(){
         return this._registeredPosts;
     }
@@ -64,4 +62,19 @@ public class User implements Serializable {
         this._image_url = image_url;
     }
     public void setRegisteredPosts(List<Post> registeredPosts) { this._registeredPosts = registeredPosts; }
+    public void addRegisteredPost(Post post) { this._registeredPosts.add(post); }
+    public void removeRegisteredPost(Post post) {
+        int postInRegisteredPostsIndex = getPostIndexOnRegisteredPosts(post);
+        this._registeredPosts.remove(postInRegisteredPostsIndex);
+    }
+
+    public int getPostIndexOnRegisteredPosts(Post post) {
+        for (int i = 0; i<getRegisteredPosts().toArray().length;i++) {
+            if (post.getId().equals(getRegisteredPosts().get(i).getId())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }

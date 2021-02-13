@@ -5,12 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.begood.fragments.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login" >
-    </fragment>
-    <fragment
         android:id="@+id/feedFragment"
         android:name="com.example.begood.fragments.FeedFragment"
         android:label="All Volunteers"
@@ -18,13 +12,15 @@
         <action
             android:id="@+id/action_feedFrg_to_addPostFrg"
             app:destination="@id/addPostFragment" />
-        <action
-            android:id="@+id/action_feedFragment_pop"
-            app:popUpTo="@id/feedFragment"
-            app:popUpToInclusive="true" />
         <argument
             android:name="user"
             app:argType="com.example.begood.models.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.begood.fragments.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
@@ -49,7 +45,9 @@
         app:destination="@id/profileFragment" />
     <action
         android:id="@+id/action_global_feedFrg"
-        app:destination="@id/feedFragment" />
+        app:destination="@id/feedFragment"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true" />
     <fragment
         android:id="@+id/myVolunteersFragment"
         android:name="com.example.begood.fragments.MyVolunteersFragment"

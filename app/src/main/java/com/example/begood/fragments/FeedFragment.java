@@ -46,12 +46,13 @@ public class FeedFragment extends Fragment {
 
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
         String userName = LoginFragment.getAccount().getDisplayName();
-        greetingMessage.setText("שלום " + userName);
+        String greetingText = "שלום " + userName;
+        greetingMessage.setText(greetingText);
 
         Button logoutButton = view.findViewById(R.id.logout_button);
         logoutButton.setOnClickListener(view1 -> {
             LoginFragment.getmGoogleSignInClient().signOut();
-            Navigation.findNavController(view1).navigate(R.id.action_feedFragment_pop);
+            Navigation.findNavController(view1).navigate(R.id.action_global_loginFrg);
         });
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
         pb = view.findViewById(R.id.feed_progress_bar);

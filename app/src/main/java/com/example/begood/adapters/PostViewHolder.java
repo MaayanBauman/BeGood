@@ -17,9 +17,6 @@ import com.example.begood.models.Post;
 import com.example.begood.models.User;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostsAdapter.OnItemClickListener listener;
     int position;
@@ -70,9 +67,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             }
         });
         Model.instance.GetUserById(userId, user -> {
-            if(user != null){
+            if (user != null) {
                 currUser = user;
-                isSubscribed = currUser.getRegisteredPosts().contains(post);
+                isSubscribed = currUser.getPostIndexOnRegisteredPosts(post) != -1;
                 if (isSubscribed) {
                     subscribe.setText("unsubscribe");
                 } else {
@@ -80,25 +77,20 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                 }
 
                 subscribe.setOnClickListener(new View.OnClickListener() {
-                    List<Post> registeredPosts = new ArrayList<>();
-
                     @Override
                     public void onClick(View view) {
+                        subscribe.setEnabled(false);
                         if (isSubscribed) {
-                            int postIndex = registeredPosts.indexOf(post);
-                            registeredPosts.remove(postIndex);
+                            currUser.removeRegisteredPost(post);
+                            subscribe.setText("subscribe");
+                            isSubscribed = false;
                         } else {
-                            registeredPosts.add(post);
+                            currUser.addRegisteredPost(post);
+                            subscribe.setText("unsubscribe");
+                            isSubscribed = true;
                         }
-                        currUser.setRegisteredPosts(registeredPosts);
                         Model.instance.UpdateUser(currUser, () -> {
-                            if (isSubscribed) {
-                                subscribe.setText("subscribe");
-                                isSubscribed = false;
-                            } else {
-                                subscribe.setText("unsubscribe");
-                                isSubscribed = true;
-                            }
+                            subscribe.setEnabled(true);
                         });
                     }
                 });
