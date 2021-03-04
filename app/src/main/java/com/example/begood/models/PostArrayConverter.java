@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class PostArrayConverter {
-
     private static Gson gson = new Gson();
+
     @TypeConverter
     public static List<Post> stringToPostsList(String data) {
         if (data == null) {

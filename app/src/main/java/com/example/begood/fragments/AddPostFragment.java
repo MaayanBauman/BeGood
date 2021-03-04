@@ -35,7 +35,6 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class AddPostFragment extends Fragment {
-
     // Fragment members
     TextInputEditText titleTIEV;
     TextInputEditText descriptionTIEV;
@@ -114,6 +113,7 @@ public class AddPostFragment extends Fragment {
 
         newPost.setType("Type");
         newPost.setAuthorId(LoginFragment.getAccount().getId());
+
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
             @Override
             public void onComplete(String url) {
@@ -130,7 +130,6 @@ public class AddPostFragment extends Fragment {
                 }
             }
         });
-
     }
 
     @Override
@@ -150,6 +149,7 @@ public class AddPostFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
+
         builder.show();
     }
 
@@ -171,6 +171,7 @@ public class AddPostFragment extends Fragment {
                 }
             }
         });
+
         builder.show();
     }
 
@@ -183,14 +184,17 @@ public class AddPostFragment extends Fragment {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         imageIV.setImageBitmap(selectedImage);
                     }
+
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
                         Uri selectedImage =  data.getData();
                         String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
                         if (selectedImage != null) {
                             Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                                     filePathColumn, null, null, null);
+
                             if (cursor != null) {
                                 cursor.moveToFirst();
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -200,6 +204,7 @@ public class AddPostFragment extends Fragment {
                             }
                         }
                     }
+
                     break;
             }
         }

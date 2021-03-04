@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 public class PostViewHolder extends RecyclerView.ViewHolder {
     public PostsAdapter.OnItemClickListener listener;
     int position;
+    boolean isSubscribed;
 
     ImageView image;
     TextView title;
@@ -32,7 +33,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     Button subscribe;
     String userId;
     User currUser;
-    boolean isSubscribed;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -52,6 +52,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         if (post.getImage() != null) {
             Picasso.get().load(post.getImage()).placeholder(R.drawable.avatar).into(image);
         }
+
         title.setText(post.getTitle());
         description.setText(post.getDescription());
         time.setText(post.getTime());
@@ -59,6 +60,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         spacialNeeds.setText(post.getSpacialNeeds());
         type.setText(post.getType());
         this.position = position;
+
         Model.instance.GetUserById(post.getAuthorId(), user -> {
             if(user != null){
                 author.setText(user.getFullName());
@@ -66,10 +68,12 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                 Log.d("Error", "couldn't find user with ID:" + userId);
             }
         });
+
         Model.instance.GetUserById(userId, user -> {
             if (user != null) {
                 currUser = user;
                 isSubscribed = currUser.getPostIndexOnRegisteredPosts(post) != -1;
+
                 if (isSubscribed) {
                     subscribe.setText("unsubscribe");
                 } else {
@@ -80,6 +84,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void onClick(View view) {
                         subscribe.setEnabled(false);
+
                         if (isSubscribed) {
                             currUser.removeRegisteredPost(post);
                             subscribe.setText("subscribe");
@@ -89,6 +94,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                             subscribe.setText("unsubscribe");
                             isSubscribed = true;
                         }
+
                         Model.instance.UpdateUser(currUser, () -> {
                             subscribe.setEnabled(true);
                         });

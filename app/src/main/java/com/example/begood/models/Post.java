@@ -21,6 +21,7 @@ public class Post {
     public Post(){
         this.setId("id" + Math.random());
     }
+
     public String getId() {
         return this.id;
     }

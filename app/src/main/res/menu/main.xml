@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/profileFragment"
-        android:icon="@android:mipmap/sym_def_app_icon"
+        android:icon="@drawable/avatar"
         android:title="Profile"
         app:showAsAction="always" />
     <item

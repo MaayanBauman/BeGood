@@ -21,33 +21,38 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ModelFireBase {
-
     public void getAllPosts(final Model.GetAllPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("posts").get().addOnCompleteListener(task -> {
             List<Post> data = new LinkedList<Post>();
+
             if (task.isSuccessful()){
                 for (DocumentSnapshot doc: task.getResult()) {
                     Post post = doc.toObject(Post.class);
                     data.add(post);
                 }
             }
+
             listener.onComplete(data);
         });
     }
 
     public void getPostById(@NonNull String id, Model.GetPostByIdListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("posts").document(id).get().addOnCompleteListener(
+                new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 Post post = null;
+
                 if (task.isSuccessful()){
                     DocumentSnapshot doc = task.getResult();
+
                     if (doc != null) {
                         post = task.getResult().toObject(Post.class);
                     }
                 }
+
                 listener.onComplete(post);
             }
         });
@@ -125,6 +130,7 @@ public class ModelFireBase {
             }
         });
     }
+
     public void updateUser(User user, Model.UpdateUserListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getId())
@@ -141,12 +147,15 @@ public class ModelFireBase {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(id).get().addOnCompleteListener(task -> {
             User user = null;
+
             if (task.isSuccessful()){
                 DocumentSnapshot doc = task.getResult();
+
                 if (doc != null) {
                     user = task.getResult().toObject(User.class);
                 }
             }
+
             listener.onComplete(user);
         });
     }
@@ -156,15 +165,19 @@ public class ModelFireBase {
         db.collection("users").document(userId).get().addOnCompleteListener(task -> {
             User user = null;
             List<Post> data = new LinkedList<Post>();
+
             if (task.isSuccessful()) {
                 DocumentSnapshot doc = task.getResult();
+
                 if (doc != null) {
                     user = task.getResult().toObject(User.class);
+
                     for (Post post: user.getRegisteredPosts()) {
                         data.add(post);
                     }
                 }
             }
+
             listener.onComplete(data);
         });
     }

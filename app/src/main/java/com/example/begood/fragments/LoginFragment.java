@@ -25,7 +25,6 @@ import com.google.android.gms.tasks.Task;
 import java.io.Serializable;
 
 public class LoginFragment extends Fragment implements View.OnClickListener , Serializable {
-
     public static GoogleSignInClient mGoogleSignInClient;
     public static GoogleSignInAccount account;
     private static final String TAG = "Main Fragment";
@@ -77,6 +76,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
                 } else {
                     updateUI(account);
                 }
+
                 break;
         }
     }
@@ -102,12 +102,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-             user = new User(account.getId(), account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString());
+             user = new User(
+                     account.getId(),
+                     account.getEmail(),
+                     account.getDisplayName(),
+                     account.getPhotoUrl().toString()
+             );
 
             Model.instance.AddUser(user, () -> {            // Signed in successfully, show authenticated UI.
                 updateUI(account);
             });
-
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

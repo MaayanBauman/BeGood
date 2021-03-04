@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import com.example.begood.R;
 
 public class ProfileFragment extends Fragment {
-
     public ProfileFragment() {
         // Required empty public constructor
     }

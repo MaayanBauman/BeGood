@@ -10,7 +10,6 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-
     @Query("select * from users")
     List<User> getAllUsers();
 

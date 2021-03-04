@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity(tableName = "users")
 public class User implements Serializable {
-
     @PrimaryKey
     @NonNull
     private String _id;
@@ -33,7 +32,7 @@ public class User implements Serializable {
         this.setRegisteredPosts(regPosts);
     }
 
-    // getters
+    // Getters
     public String getId(){
         return this._id;
     }
@@ -48,7 +47,7 @@ public class User implements Serializable {
         return this._registeredPosts;
     }
 
-    //setters
+    // Setters
     public void setId(String id){
         this._id = id;
     }
@@ -74,7 +73,7 @@ public class User implements Serializable {
                 return i;
             }
         }
+
         return -1;
     }
-
 }
