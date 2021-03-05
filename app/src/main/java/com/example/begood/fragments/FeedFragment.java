@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.begood.MainActivity;
 import com.example.begood.R;
 import com.example.begood.adapters.PostsAdapter;
 import com.example.begood.models.Model;
@@ -43,6 +44,8 @@ public class FeedFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
+
+        ((MainActivity)getActivity()).getSupportActionBar().show();
 
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
         String userName = LoginFragment.getAccount().getDisplayName();

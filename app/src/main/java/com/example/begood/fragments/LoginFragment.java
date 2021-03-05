@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.begood.MainActivity;
 import com.example.begood.R;
 import com.example.begood.models.Model;
 import com.example.begood.models.User;
@@ -38,6 +39,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_login, container, false);
+
+        ((MainActivity)getActivity()).getSupportActionBar().hide();
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
