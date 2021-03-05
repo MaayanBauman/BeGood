@@ -4,10 +4,11 @@
 
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/avatar"
-        android:title="Profile"
-        app:showAsAction="always" />
+        android:title="My profile" />
     <item
         android:id="@+id/myVolunteersFragment"
         android:title="My Voluteers" />
+    <item
+        android:id="@+id/logoutFragment5"
+        android:title="Logout" />
 </menu>

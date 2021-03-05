@@ -8,4 +8,7 @@
     <item
         android:id="@+id/feedFragment"
         android:title="All Volunteers" />
+    <item
+        android:id="@+id/logoutFragment5"
+        android:title="Logout" />
 </menu>

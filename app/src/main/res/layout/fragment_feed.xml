@@ -12,7 +12,7 @@
 
     <ProgressBar
         android:id="@+id/feed_progress_bar"
-        style="?android:attr/progressBarStyle"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbarSize="4dp"
@@ -28,7 +28,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
-        app:backgroundTint="@color/purple_200"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/feedfragm_list"
         app:rippleColor="#EDE7F6"
@@ -36,40 +36,25 @@
 
     <TextView
         android:id="@+id/greeting_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="90dp"
-        android:text="Hello"
-        app:layout_constraintBottom_toTopOf="@+id/logout_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002" />
-
-    <Button
-        android:id="@+id/logout_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="50dp"
-        android:drawableLeft="@drawable/google_logo"
-        android:scaleType="fitXY"
-        android:text="התנתק"
-        android:textColor="#1D1D1E"
-        android:textSize="24sp"
-        app:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/feed_add_post_btn"
-        app:layout_constraintStart_toStartOf="parent"></Button>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Hello"
+        app:layout_constraintBottom_toTopOf="@+id/feedfragm_list"
+        app:layout_constraintEnd_toEndOf="@+id/feedfragm_list"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="@+id/feedfragm_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedfragm_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#00E1BEE7"
-        app:layout_constraintBottom_toTopOf="@+id/logout_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greeting_message">

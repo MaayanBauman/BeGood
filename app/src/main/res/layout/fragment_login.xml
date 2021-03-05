@@ -10,24 +10,30 @@
 
     <LinearLayout
         android:id="@+id/main_logo"
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toTopOf="@+id/footer_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/logo_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/begood_logo" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/sign_in_area"
+        android:id="@+id/footer_area"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/hands"
@@ -43,14 +49,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:scaleType="fitXY"
-        android:text="התחברות עם חשבון גוגל"
+        android:text="Sigh in with Google "
         android:textColor="#1D1D1E"
         android:textSize="24sp"
         app:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/sign_in_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_logo"></com.google.android.gms.common.SignInButton>

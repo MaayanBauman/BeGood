@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_feedFrg_to_addPostFrg"
             app:destination="@id/addPostFragment" />
+        <action
+            android:id="@+id/action_feedFrg_to_addPostFrg2"
+            app:destination="@id/addPostFragment" />
         <argument
             android:name="user"
             app:argType="com.example.begood.models.User" />
@@ -63,4 +66,9 @@
         app:argType="com.example.begood.models.User"
         app:nullable="true" />
     <action android:id="@+id/action_global_loginFrg" app:destination="@id/loginFragment" />
+    <fragment
+        android:id="@+id/logoutFragment5"
+        android:name="com.example.begood.fragments.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>
