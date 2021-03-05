@@ -35,6 +35,6 @@ public class LogoutFragment extends Fragment {
     }
 
     public void fragmentNavigation(View view) {
-        Navigation.findNavController(view).navigate(R.id.action_global_loginFrg);
+        Navigation.findNavController(view).navigate(R.id.action_logoutFragment_to_loginFragment);
     }
 }

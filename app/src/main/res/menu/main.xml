@@ -9,6 +9,6 @@
         android:id="@+id/myVolunteersFragment"
         android:title="My Voluteers" />
     <item
-        android:id="@+id/logoutFragment5"
+        android:id="@+id/logoutFragment"
         android:title="Logout" />
 </menu>
