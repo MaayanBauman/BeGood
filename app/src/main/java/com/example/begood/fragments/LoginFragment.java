@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.begood.MainActivity;
+import com.example.begood.NavGraphDirections;
 import com.example.begood.R;
 import com.example.begood.models.Model;
 import com.example.begood.models.User;
@@ -126,17 +127,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void updateUI(Object o) {
         if (o instanceof GoogleSignInAccount) {
             String userId = ((GoogleSignInAccount) o).getId();
-            //Model.instance.GetUserById(userId, user -> {
-//                if(user != null){
-                    //TODO: pass user in navAction instead of get from db!
-//                    NavGraphDirections.ActionGlobalFeedFrg directions = LoginFragmentDirections.actionGlobalFeedFrg(user);
-//                    Navigation.findNavController(view).navigate(directions);
-                    Navigation.findNavController(view).navigate(R.id.action_global_feedFrg);
-
-//                } else {
-//                    Log.d("Error", "couldn't find user with ID:" + userId);
-//                }
-            //});
+            Model.instance.GetUserById(userId, user -> {
+                if(user != null){
+                    NavGraphDirections.ActionGlobalFeedFrg directions = LoginFragmentDirections.actionGlobalFeedFrg(user);
+                    Navigation.findNavController(view).navigate(directions);
+                } else {
+                    Log.d("Error", "couldn't find user with ID:" + userId);
+                }
+            });
         } else {
             Log.i(TAG, "UI updated");
         }

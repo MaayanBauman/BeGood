@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +20,7 @@ import com.example.begood.R;
 import com.example.begood.adapters.PostsAdapter;
 import com.example.begood.models.Model;
 import com.example.begood.models.Post;
+import com.example.begood.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.LinkedList;
@@ -31,8 +31,7 @@ public class FeedFragment extends Fragment {
     ProgressBar pb;
     FloatingActionButton addNewBtn;
     PostsAdapter adapter;
-    // TODO: pass user in navAction instead of get from db!
-    // User user = FeedFragmentArgs.fromBundle(getArguments()).getUser();
+    User user;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -41,15 +40,13 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
-        // Inflate the layout for this fragment
+        user = FeedFragmentArgs.fromBundle(getArguments()).getUser();
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
         ((MainActivity)getActivity()).getSupportActionBar().show();
 
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
-        String userName = LoginFragment.getAccount().getDisplayName();
-        String greetingText = "שלום " + userName;
+        String greetingText = "שלום " + user.getFullName();
         greetingMessage.setText(greetingText);
         
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
