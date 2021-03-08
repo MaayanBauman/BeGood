@@ -48,79 +48,23 @@
         app:layout_constraintTop_toBottomOf="@+id/create_page_title"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/create_page_filed_title_text2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:editable="false"
-            android:text="Title:"
-            android:textColor="#040303"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_title_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_text2"
-            app:placeholderText="insert Title">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_title_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:editable="true"
-                android:hint="Insert Title"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/create_page_filed_location_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:editable="false"
-            android:text="Location:"
-            android:textColor="#040303"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_location_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="insert Location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_location_text"
-            app:placeholderText="insert Location">
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_page_filed_location_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:editable="true"
-                android:hint="Insert Location"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content" />
 
+        </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/create_page_filed_date_text"
             android:layout_width="0dp"
@@ -128,7 +72,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:editable="false"
             android:text="Date:"
             android:textColor="#040303"
             android:textSize="14sp"
@@ -143,8 +86,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:autofillHints=""
-            android:editable="true"
             android:ems="10"
             android:inputType="date"
             android:textSize="14sp"
@@ -159,7 +100,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:editable="false"
             android:text="Type:"
             android:textColor="#040303"
             android:textSize="14sp"
@@ -174,7 +114,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:editable="true"
             android:text="Image:"
             android:textColor="#040303"
             android:textSize="14sp"
@@ -190,7 +129,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:height="14dp"
+            android:height="10dp"
             android:fontFamily="sans-serif"
             android:text="Choose Image"
             android:textAllCaps="false"
@@ -204,8 +143,8 @@
 
         <ImageView
             android:id="@+id/create_page_filed_image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="88dp"
+            android:layout_height="71dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -217,102 +156,92 @@
             tools:srcCompat="@drawable/avatar"
             tools:visibility="visible" />
 
-        <TextView
-            android:id="@+id/create_page_filed_description_text"
-            android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_page_filed_title_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:editable="false"
-            android:text="Description:"
-            android:textColor="#040303"
-            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:hint="insert Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_image_btn" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_title_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_description_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:hint="insert Description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_text">
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_image_btn">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_page_filed_description_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:editable="true"
-                android:hint="Describe volunteer"
-                android:textSize="14sp" />
+                android:lines="2"
+                android:maxLines="3" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/create_page_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="#00FFFFFF"
-            android:editable="false"
             android:text="Nevermind"
             android:textAllCaps="false"
             android:textColor="#040303"
             app:backgroundTint="#00FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/create_page_submit_btn" />
+            app:layout_constraintEnd_toStartOf="@+id/create_page_submit_btn"
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_needs_input_layout" />
 
         <Button
             android:id="@+id/create_page_submit_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:editable="false"
             android:text="Let's Go "
             android:textAllCaps="false"
             app:backgroundTint="#BA68C8"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/create_page_filed_needs_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:editable="false"
-            android:text="Special Needs:"
-            android:textColor="#040303"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_input_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_needs_input_layout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_needs_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:hint="insert Special Needs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_needs_text"
-            app:placeholderText="insert Location">
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_page_filed_needs_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:editable="true"
-                android:hint="Insert Needs"
-                android:textSize="14sp" />
+                android:maxLines="2"
+                android:singleLine="true" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
