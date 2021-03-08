@@ -83,9 +83,12 @@ public class AddPostFragment extends Fragment {
 
         // Cancel post
         cancelBtn = view.findViewById(R.id.create_page_cancel_btn);
-
-        cancelBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_global_feedFrg));
-
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(AddPostFragmentDirections.actionGlobalFeedFrg(currUser));
+            }
+        });
         // Save new post
         saveBtn = view.findViewById(R.id.create_page_submit_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {

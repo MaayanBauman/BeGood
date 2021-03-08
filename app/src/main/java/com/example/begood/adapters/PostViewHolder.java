@@ -18,7 +18,6 @@ import com.example.begood.models.User;
 import com.squareup.picasso.Picasso;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
-    public PostsAdapter.OnItemClickListener listener;
     int position;
     boolean isSubscribed;
 
@@ -38,75 +37,88 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
-        image = itemView.findViewById(R.id.post_image);
-        title = itemView.findViewById(R.id.post_title);
-        description = itemView.findViewById(R.id.post_description);
-        time = itemView.findViewById(R.id.post_time_value);
-        location = itemView.findViewById(R.id.post_location_value);
-        spacialNeeds = itemView.findViewById(R.id.post_needs_value);
-        type = itemView.findViewById(R.id.post_type_value);
-        author = itemView.findViewById(R.id.post_author_value);
-        subscribe = itemView.findViewById(R.id.post_subscribe_btn);
-        deletePost = itemView.findViewById(R.id.delete_post_btn);
-        editPost = itemView.findViewById(R.id.edit_post_btn);
-        userId = LoginFragment.getAccount().getId();
+        this.image = itemView.findViewById(R.id.post_image);
+        this.title = itemView.findViewById(R.id.post_title);
+        this.description = itemView.findViewById(R.id.post_description);
+        this.time = itemView.findViewById(R.id.post_time_value);
+        this. location = itemView.findViewById(R.id.post_location_value);
+        this.spacialNeeds = itemView.findViewById(R.id.post_needs_value);
+        this.type = itemView.findViewById(R.id.post_type_value);
+        this.author = itemView.findViewById(R.id.post_author_value);
+        this.subscribe = itemView.findViewById(R.id.post_subscribe_btn);
+        this.deletePost = itemView.findViewById(R.id.delete_post_btn);
+        this.editPost = itemView.findViewById(R.id.edit_post_btn);
+        this.userId = LoginFragment.getAccount().getId();
     }
 
     public void bindData(Post post, int position) {
-        if (post.getImage() != null) {
-            Picasso.get().load(post.getImage()).placeholder(R.drawable.avatar).into(image);
-        }
-
-        title.setText(post.getTitle());
-        description.setText(post.getDescription());
-        time.setText(post.getTime());
-        location.setText(post.getLocation());
-        spacialNeeds.setText(post.getSpacialNeeds());
-        type.setText(post.getType());
+        this.title.setText(post.getTitle());
+        this.description.setText(post.getDescription());
+        this.time.setText(post.getTime());
+        this.location.setText(post.getLocation());
+        this.spacialNeeds.setText(post.getSpacialNeeds());
+        this.type.setText(post.getType());
         this.position = position;
+        this.setPhoto(post.getImage());
+        this.setSubscribe(post);
+        this.setAuthor(post.getAuthorId());
+    }
 
-        Model.instance.GetUserById(post.getAuthorId(), user -> {
-            if(user != null){
-                author.setText(user.getFullName());
-                this.displayActions(user.getId());
+    private void setPhoto(String image) {
+        if (image != null) {
+            Picasso.get().load(image).placeholder(R.drawable.avatar).into(this.image);
+        }
+    }
+
+    private void setSubscribe(Post post) {
+        Model.instance.GetUserById(userId, user -> {
+            if (user != null) {
+                this.currUser = user;
+                this.isSubscribed = this.currUser.getPostIndexOnRegisteredPosts(post) != -1;
+
+                if (this.isSubscribed) {
+                    this.subscribe.setText("unsubscribe");
+                } else {
+                    this.subscribe.setText("subscribe");
+                }
+
+                this.setSubscribeOnClick(post);
             } else {
                 Log.d("Error", "couldn't find user with ID:" + userId);
             }
         });
+    }
 
-        Model.instance.GetUserById(userId, user -> {
-            if (user != null) {
-                currUser = user;
-                isSubscribed = currUser.getPostIndexOnRegisteredPosts(post) != -1;
+    private void setSubscribeOnClick(Post post) {
+        this.subscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                subscribe.setEnabled(false);
 
                 if (isSubscribed) {
-                    subscribe.setText("unsubscribe");
-                } else {
+                    currUser.removeRegisteredPost(post);
                     subscribe.setText("subscribe");
+                    isSubscribed = false;
+                } else {
+                    currUser.addRegisteredPost(post);
+                    subscribe.setText("unsubscribe");
+                    isSubscribed = true;
                 }
 
-                subscribe.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        subscribe.setEnabled(false);
-
-                        if (isSubscribed) {
-                            currUser.removeRegisteredPost(post);
-                            subscribe.setText("subscribe");
-                            isSubscribed = false;
-                        } else {
-                            currUser.addRegisteredPost(post);
-                            subscribe.setText("unsubscribe");
-                            isSubscribed = true;
-                        }
-
-                        Model.instance.UpdateUser(currUser, () -> {
-                            subscribe.setEnabled(true);
-                        });
-                    }
+                Model.instance.UpdateUser(currUser, () -> {
+                    subscribe.setEnabled(true);
                 });
+            }
+        });
+    }
+
+    private void setAuthor(String authorId) {
+        Model.instance.GetUserById(authorId, user -> {
+            if (user != null) {
+                this.author.setText(user.getFullName());
+                this.displayActions(user.getId());
             } else {
-                Log.d("Error", "couldn't find user with ID:" + userId);
+                Log.d("Error", "couldn't find user with ID:" + authorId);
             }
         });
     }
@@ -121,5 +133,24 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             editPost.setVisibility(View.GONE);
             subscribe.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void setDeleteOnClick(Post post) {
+        this.deletePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO
+                // Model.instance.deletePost(post.getId(), null);
+            }
+        });
+    }
+
+    private void setEditOnClick(Post post) {
+        this.deletePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // TODO
+            }
+        });
     }
 }
