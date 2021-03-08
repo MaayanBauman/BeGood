@@ -56,8 +56,13 @@ public class Model {
         modelFirebase.getUserById(userId, listener);
     }
 
-    public interface GetUserPostsListener extends Listener<List<Post>> { }
-    public void GetUserPosts(String userId, final GetUserPostsListener listener) {
-        modelFirebase.getUserPostsd(userId, listener);
+    public interface GetUserRegisteredPostsListener extends Listener<List<Post>> { }
+    public void GetUserRegisteredPosts(String userId, final GetUserRegisteredPostsListener listener) {
+        modelFirebase.getUserRegisteredPosts(userId, listener);
+    }
+
+    public interface GetUserUploadPostsListener extends Listener<List<Post>> { }
+    public void GetUserUploadPosts(String userId, final GetUserUploadPostsListener listener) {
+        modelFirebase.GetUserUploadPosts(userId, listener);
     }
 }

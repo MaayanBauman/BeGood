@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import com.example.begood.R;
 
 public class LogoutFragment extends Fragment {
-    public LogoutFragment() { }
+    public LogoutFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
