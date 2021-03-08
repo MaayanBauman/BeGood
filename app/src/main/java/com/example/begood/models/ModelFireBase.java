@@ -134,13 +134,19 @@ public class ModelFireBase {
     public void updateUser(User user, Model.UpdateUserListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(user.getId())
-                .set(user).addOnSuccessListener(aVoid -> {
-                    Log.d("TAG","user update successfully");
-                    listener.onComplete();
-                }).addOnFailureListener(e -> {
-                    Log.d("TAG","fail update user :(");
-                    listener.onComplete();
-                });
+                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG","user update successfully");
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG","fail to update user :(");
+                listener.onComplete();
+            }
+        });
     }
 
     public void getUserById(@NonNull String id, Model.GetUserByIdListener listener) {

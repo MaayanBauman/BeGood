@@ -21,11 +21,6 @@ public class Model {
         modelFirebase.getAllPosts(listener);
     }
 
-    public interface GetPostByIdListener extends Listener<Post> { }
-    public void getPostById(String id, final GetPostByIdListener listener) {
-        modelFirebase.getPostById(id, listener);
-    }
-
     public interface AddPostListener { void onComplete(); }
     public void AddPost(Post post, final AddPostListener listener) {
         modelFirebase.addPost(post, listener);
