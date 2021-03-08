@@ -31,6 +31,8 @@ import com.example.begood.models.Post;
 import com.example.begood.models.User;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -49,7 +51,8 @@ public class AddPostFragment extends Fragment {
     Button saveBtn;
     View view;
     User currUser;
-
+    String defaultValue = "empty :(";
+    Bitmap bitmap;
     public AddPostFragment() {
         // Required empty public constructor
     }
@@ -66,10 +69,10 @@ public class AddPostFragment extends Fragment {
         descriptionTIEV = view.findViewById(R.id.create_page_filed_description_input);
         imageBtn = view.findViewById(R.id.create_page_filed_image_btn);
         imageIV = view.findViewById(R.id.create_page_filed_image);
-        timeEV = view.findViewById(R.id.create_page_filed_date_input);
         typeTIEV = view.findViewById(R.id.create_page_filed_type_input);
         locationTIEV = view.findViewById(R.id.create_page_filed_location_input);
         specialNeedsTIEV = view.findViewById(R.id.create_page_filed_needs_input);
+        timeEV = view.findViewById(R.id.create_page_filed_date_input);
 
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,15 +110,27 @@ public class AddPostFragment extends Fragment {
         saveBtn.setEnabled(false);
 
         final Post newPost = new Post();
-        newPost.setTitle(titleTIEV.getText().toString());
-        newPost.setDescription(descriptionTIEV.getText().toString());
-        newPost.setTime(timeEV.getText().toString());
-        newPost.setType(typeTIEV.getText().toString());
-        newPost.setLocation(locationTIEV.getText().toString());
-        newPost.setSpacialNeeds(specialNeedsTIEV.getText().toString());
+        newPost.setTitle(getInputValue(titleTIEV));
+        newPost.setDescription(getInputValue(descriptionTIEV));
+
+        newPost.setType(getInputValue(typeTIEV));
+        newPost.setLocation(getInputValue(locationTIEV));
+        newPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
         newPost.setAuthorId(currUser.getId());
+
+        if(timeEV.getText().toString().isEmpty()){
+            newPost.setTime("" + new Date());
+        } else {
+            newPost.setTime(timeEV.getText().toString());
+        }
+        if(drawable == null){
+            int w = 90, h = 45;
+            Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
+            bitmap = Bitmap.createBitmap(w, h, conf); // this creates a MUTABLE bitmap
+        } else {
+            bitmap = drawable.getBitmap();
+        }
 
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
             @Override
@@ -133,6 +148,13 @@ public class AddPostFragment extends Fragment {
                 }
             }
         });
+    }
+
+    public String getInputValue(TextInputEditText item) {
+        if(item.getText().toString().isEmpty()) {
+            return defaultValue;
+        }
+        return item.getText().toString();
     }
 
     @Override
