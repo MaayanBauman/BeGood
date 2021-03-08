@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BEFFFFFF"
     tools:context=".fragments.FeedFragment">
 
     <ProgressBar
@@ -40,12 +39,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Hello"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/feedfragm_list"
         app:layout_constraintEnd_toEndOf="@+id/feedfragm_list"
         app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="@+id/feedfragm_list"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedfragm_list"
@@ -55,6 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greeting_message">
-
     </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

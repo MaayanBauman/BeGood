@@ -160,7 +160,7 @@ public class ModelFireBase {
         });
     }
 
-    public void getUserPostsd(@NonNull String userId, final Model.GetUserPostsListener listener) {
+    public void getUserRegisteredPosts(@NonNull String userId, final Model.GetUserRegisteredPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).get().addOnCompleteListener(task -> {
             User user = null;
@@ -173,6 +173,25 @@ public class ModelFireBase {
                     user = task.getResult().toObject(User.class);
 
                     for (Post post: user.getRegisteredPosts()) {
+                        data.add(post);
+                    }
+                }
+            }
+
+            listener.onComplete(data);
+        });
+    }
+
+    public void GetUserUploadPosts(@NonNull String userId, final Model.GetUserUploadPostsListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts").get().addOnCompleteListener(task -> {
+            List<Post> data = new LinkedList<Post>();
+
+            if (task.isSuccessful()){
+                for (DocumentSnapshot doc: task.getResult()) {
+                    Post post = doc.toObject(Post.class);
+
+                    if (post.getAuthorId().compareTo(userId) == 0) {
                         data.add(post);
                     }
                 }
