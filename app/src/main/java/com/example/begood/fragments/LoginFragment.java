@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     User user;
     SignInButton signInButton;
     View view;
+    ProgressBar pb;
+
 
     public LoginFragment() {
         // Required empty public constructor
@@ -57,6 +60,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
         account = GoogleSignIn.getLastSignedInAccount(view.getContext());
         signInButton = view.findViewById(R.id.login_button);
+        pb = view.findViewById(R.id.login_progress_bar);
+        pb.setVisibility(View.INVISIBLE);
 
         TextView textView = (TextView) signInButton.getChildAt(0);
         textView.setText("התחברות עם חשבון גוגל");
@@ -110,16 +115,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-             user = new User(
-                     account.getId(),
-                     account.getEmail(),
-                     account.getDisplayName(),
-                     account.getPhotoUrl().toString()
-             );
-
-            Model.instance.AddUser(user, () -> {            // Signed in successfully, show authenticated UI.
-                updateUI(account);
+            pb.setVisibility(View.VISIBLE);
+            Model.instance.GetUserById(account.getId(), userFromDB -> {
+                if(userFromDB == null) {
+                    user = new User(
+                            account.getId(),
+                            account.getEmail(),
+                            account.getDisplayName(),
+                            account.getPhotoUrl().toString()
+                    );
+                    Model.instance.AddUser(user, () -> {            // Signed in successfully, show authenticated UI.
+                        updateUI(account);
+                    });
+                } else {
+                    updateUI(account);
+                }
             });
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -129,6 +141,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
     }
 
     private void updateUI(Object o) {
+        pb.setVisibility(View.INVISIBLE);
         if (o instanceof GoogleSignInAccount) {
             String userId = ((GoogleSignInAccount) o).getId();
             Model.instance.GetUserById(userId, user -> {
