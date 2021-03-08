@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".fragments.AddPostFragment">
 
     <ProgressBar
@@ -47,6 +47,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_page_title"
         app:layout_constraintVertical_bias="0.0">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_page_filed_title_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="insert Title"
+            app:hintTextColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_title_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_location_input_layout"
@@ -55,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="insert Location"
+            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout">
@@ -62,9 +83,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_page_filed_location_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/create_page_filed_date_text"
             android:layout_width="0dp"
@@ -157,30 +181,13 @@
             tools:visibility="visible" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_title_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="insert Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_title_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_description_input_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="insert Description"
+            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_image_btn">
@@ -190,7 +197,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="2"
-                android:maxLines="3" />
+                android:maxLines="3"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,6 +240,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
             android:hint="insert Special Needs"
+            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_input_layout">
@@ -240,7 +250,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
