@@ -37,27 +37,6 @@ public class ModelFireBase {
         });
     }
 
-    public void getPostById(@NonNull String id, Model.GetPostByIdListener listener) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").document(id).get().addOnCompleteListener(
-                new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                Post post = null;
-
-                if (task.isSuccessful()){
-                    DocumentSnapshot doc = task.getResult();
-
-                    if (doc != null) {
-                        post = task.getResult().toObject(Post.class);
-                    }
-                }
-
-                listener.onComplete(post);
-            }
-        });
-    }
-
     public void addPost(Post post, Model.AddPostListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("posts").document(post.getId())
