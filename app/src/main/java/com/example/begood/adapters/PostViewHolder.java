@@ -3,6 +3,7 @@ package com.example.begood.adapters;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     TextView type;
     TextView author;
     Button subscribe;
+    ImageButton deletePost;
+    ImageButton editPost;
     String userId;
     User currUser;
 
@@ -44,6 +47,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         type = itemView.findViewById(R.id.post_type_value);
         author = itemView.findViewById(R.id.post_author_value);
         subscribe = itemView.findViewById(R.id.post_subscribe_btn);
+        deletePost = itemView.findViewById(R.id.delete_post_btn);
+        editPost = itemView.findViewById(R.id.edit_post_btn);
         userId = LoginFragment.getAccount().getId();
     }
 
@@ -63,6 +68,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         Model.instance.GetUserById(post.getAuthorId(), user -> {
             if(user != null){
                 author.setText(user.getFullName());
+                this.displayActions(user.getId());
             } else {
                 Log.d("Error", "couldn't find user with ID:" + userId);
             }
@@ -103,5 +109,15 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                 Log.d("Error", "couldn't find user with ID:" + userId);
             }
         });
+    }
+
+    private void displayActions(String authorId) {
+        if (authorId.compareTo(userId) == 0) {
+            deletePost.setVisibility(View.VISIBLE);
+            editPost.setVisibility(View.VISIBLE);
+        } else {
+            deletePost.setVisibility(View.GONE);
+            editPost.setVisibility(View.GONE);
+        }
     }
 }
