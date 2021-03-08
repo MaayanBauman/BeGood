@@ -20,19 +20,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
         this.inflater = inflater;
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(Post data);
-    }
-    private OnItemClickListener listener;
-
-    public void setOnClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
-
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.volunteer_post, parent,false);
         PostViewHolder holder = new PostViewHolder(view);
-        holder.listener = listener;
         return holder;
     }
 
