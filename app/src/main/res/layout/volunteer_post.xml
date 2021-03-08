@@ -33,9 +33,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:focusable="false"
+            android:singleLine="true"
             android:textColor="#0C0909"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -43,29 +44,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_image" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:autofillHints=""
             android:ems="10"
             android:enabled="false"
             android:gravity="start|top"
             android:inputType="textMultiLine"
+            android:lines="2"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/post_time_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_title" />
 
         <TextView
             android:id="@+id/post_time_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -73,117 +73,125 @@
             android:text="Time:"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/post_time_value"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_time_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:autofillHints=""
             android:ems="10"
             android:enabled="false"
             android:inputType="date"
+            android:singleLine="true"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_time_title"
             app:layout_constraintEnd_toStartOf="@+id/post_location_title"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_time_title"
-            app:layout_constraintTop_toTopOf="@+id/post_time_title" />
+            app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
         <TextView
             android:id="@+id/post_location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
             android:text="Location:"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_time_value"
-            app:layout_constraintStart_toEndOf="@+id/post_time_value"
-            app:layout_constraintTop_toTopOf="@+id/post_time_value"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toStartOf="@+id/post_location_value"
+            app:layout_constraintStart_toStartOf="@+id/post_needs_title"
+            app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_location_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:enabled="false"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:singleLine="true"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_location_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_location_title"
-            app:layout_constraintTop_toBottomOf="@+id/post_description"
-            app:layout_constraintVertical_bias="0.75" />
+            app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
         <TextView
             android:id="@+id/post_type_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
             android:text="Type:"
             android:textColor="#FF0C0909"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_type_value"
             android:layout_width="0dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:enabled="false"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:singleLine="true"
             android:textColor="#FF0C0909"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/post_type_title"
             app:layout_constraintEnd_toStartOf="@+id/post_needs_title"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_type_title"
-            app:layout_constraintTop_toTopOf="@+id/post_type_title" />
+            app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
 
         <TextView
             android:id="@+id/post_needs_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:focusable="false"
             android:text="Special Needs:"
             android:textColor="#FF0C0909"
-            app:layout_constraintBottom_toBottomOf="@+id/post_type_value"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/post_needs_value"
             app:layout_constraintStart_toEndOf="@+id/post_type_value"
-            app:layout_constraintTop_toTopOf="@+id/post_type_value" />
+            app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_needs_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:autofillHints=""
             android:enabled="false"
             android:inputType="text"
+            android:singleLine="true"
             android:textColor="#FF0C0909"
             android:textColorHighlight="#FFFFFF"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_needs_title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_needs_title"
-            app:layout_constraintTop_toTopOf="@+id/post_needs_title" />
+            app:layout_constraintTop_toBottomOf="@+id/post_location_value" />
 
         <TextView
             android:id="@+id/post_author_title"
@@ -194,28 +202,33 @@
             android:focusable="false"
             android:text="Author:"
             android:textColor="#FF0C0909"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_type_title" />
+            app:layout_constraintTop_toBottomOf="@+id/post_type_value" />
 
-        <EditText
+        <TextView
             android:id="@+id/post_author_value"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:autofillHints=""
             android:enabled="false"
             android:inputType="text"
+            android:singleLine="true"
             android:textColor="#FF0C0909"
-            app:layout_constraintBottom_toBottomOf="@+id/post_author_title"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/post_subscribe_btn"
             app:layout_constraintStart_toEndOf="@+id/post_author_title"
-            app:layout_constraintTop_toBottomOf="@+id/post_type_title" />
+            app:layout_constraintTop_toBottomOf="@+id/post_type_value" />
 
         <Button
             android:id="@+id/post_subscribe_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="#B39DDB"
             android:fontFamily="sans-serif"

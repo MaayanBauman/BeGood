@@ -128,7 +128,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
         if (o instanceof GoogleSignInAccount) {
             String userId = ((GoogleSignInAccount) o).getId();
             Model.instance.GetUserById(userId, user -> {
-                if(user != null){
+                if(user != null) {
                     NavGraphDirections.ActionGlobalFeedFrg directions = LoginFragmentDirections.actionGlobalFeedFrg(user);
                     Navigation.findNavController(view).navigate(directions);
                 } else {

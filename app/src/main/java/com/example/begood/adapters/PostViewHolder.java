@@ -3,7 +3,6 @@ package com.example.begood.adapters;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +24,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
     TextView title;
     TextView description;
-    EditText time;
+    TextView time;
     TextView location;
     TextView spacialNeeds;
     TextView type;

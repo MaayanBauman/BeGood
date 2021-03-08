@@ -29,6 +29,7 @@ import androidx.navigation.Navigation;
 import com.example.begood.R;
 import com.example.begood.models.Model;
 import com.example.begood.models.Post;
+import com.example.begood.models.User;
 import com.google.android.material.textfield.TextInputEditText;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -48,6 +49,7 @@ public class AddPostFragment extends Fragment {
     Button cancelBtn;
     Button saveBtn;
     View view;
+    User currUser;
 
     public AddPostFragment() {
         // Required empty public constructor
@@ -57,7 +59,7 @@ public class AddPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_create_new, container, false);
-
+        currUser = AddPostFragmentArgs.fromBundle(getArguments()).getUser();
         setHasOptionsMenu(true);
 
         // Fragment members
@@ -112,7 +114,7 @@ public class AddPostFragment extends Fragment {
         Bitmap bitmap = drawable.getBitmap();
 
         newPost.setType("Type");
-        newPost.setAuthorId(LoginFragment.getAccount().getId());
+        newPost.setAuthorId(currUser.getId());
 
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
             @Override

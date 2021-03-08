@@ -64,7 +64,12 @@ public class FeedFragment extends Fragment {
         rv.setLayoutManager(layoutManager);
 
         // Navigate to create new post fragment
-        addNewBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_feedFrg_to_addPostFrg));
+        addNewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(user));
+            }
+        });
 
         reloadData();
         return view;
