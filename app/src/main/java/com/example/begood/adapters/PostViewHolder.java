@@ -115,9 +115,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         if (authorId.compareTo(userId) == 0) {
             deletePost.setVisibility(View.VISIBLE);
             editPost.setVisibility(View.VISIBLE);
+            subscribe.setVisibility(View.GONE);
         } else {
             deletePost.setVisibility(View.GONE);
             editPost.setVisibility(View.GONE);
+            subscribe.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F3E5F5"
     tools:context=".fragments.AddPostFragment">
 
     <ProgressBar
@@ -47,12 +47,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_page_title"
         app:layout_constraintVertical_bias="0.0">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_title_input_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:hint="insert Title"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Date:"
             android:textColor="#040303"
@@ -117,19 +118,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_text" />
 
-        <TextView
-            android:id="@+id/create_page_filed_type_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_page_filed_type_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Type:"
-            android:textColor="#040303"
-            android:textSize="14sp"
+            android:hint="insert Type"
+            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input" />
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_type_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/create_page_filed_image_text"
@@ -176,7 +184,7 @@
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/create_page_filed_image_btn"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_type_text"
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_type_input_layout"
             tools:srcCompat="@drawable/avatar"
             tools:visibility="visible" />
 
@@ -185,7 +193,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:hint="insert Description"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +215,7 @@
             android:id="@+id/create_page_cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="#00FFFFFF"
@@ -223,7 +231,7 @@
             android:id="@+id/create_page_submit_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="Let's Go "
@@ -238,7 +246,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="8dp"
             android:hint="insert Special Needs"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"

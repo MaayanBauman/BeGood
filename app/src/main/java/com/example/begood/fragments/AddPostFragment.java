@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -40,10 +39,10 @@ public class AddPostFragment extends Fragment {
     TextInputEditText titleTIEV;
     TextInputEditText descriptionTIEV;
     TextInputEditText specialNeedsTIEV;
+    TextInputEditText typeTIEV;
     Button imageBtn;
     ImageView imageIV;
     EditText timeEV;
-    TextView typeTV;
     TextInputEditText locationTIEV;
     ProgressBar pb;
     Button cancelBtn;
@@ -68,7 +67,7 @@ public class AddPostFragment extends Fragment {
         imageBtn = view.findViewById(R.id.create_page_filed_image_btn);
         imageIV = view.findViewById(R.id.create_page_filed_image);
         timeEV = view.findViewById(R.id.create_page_filed_date_input);
-        typeTV = view.findViewById(R.id.create_page_filed_type_text);
+        typeTIEV = view.findViewById(R.id.create_page_filed_type_input);
         locationTIEV = view.findViewById(R.id.create_page_filed_location_input);
         specialNeedsTIEV = view.findViewById(R.id.create_page_filed_needs_input);
 
@@ -108,12 +107,11 @@ public class AddPostFragment extends Fragment {
         newPost.setTitle(titleTIEV.getText().toString());
         newPost.setDescription(descriptionTIEV.getText().toString());
         newPost.setTime(timeEV.getText().toString());
+        newPost.setType(typeTIEV.getText().toString());
         newPost.setLocation(locationTIEV.getText().toString());
         newPost.setSpacialNeeds(specialNeedsTIEV.getText().toString());
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
-
-        newPost.setType("Type");
         newPost.setAuthorId(currUser.getId());
 
         Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
