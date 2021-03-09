@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="insert Title"
+            android:hint="Insert Title"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,11 +74,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:hint="insert Location"
+            android:hint="Insert Location"
             app:hintTextColor="#000000"
-            app:layout_constraintEnd_toStartOf="@+id/create_page_filed_date_text"
+            app:layout_constraintEnd_toStartOf="@+id/create_page_filed_date_input_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout">
 
@@ -91,26 +91,41 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/create_page_filed_date_text"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_page_filed_date_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Date:"
-            android:textColor="#040303"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/create_page_filed_date_input"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout" />
-
-        <EditText
-            android:id="@+id/create_page_filed_date_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:textSize="14sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Select Date"
+            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_text" />
+            app:layout_constraintStart_toEndOf="@+id/create_page_filed_location_input_layout"
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout"
+            app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_page_filed_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/create_page_filed_date"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:drawableLeft="@android:drawable/ic_menu_my_calendar"-->
+<!--            android:ems="10"-->
+<!--            android:hint="Select Date"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_location_input_layout"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/create_page_filed_location_input_layout" />-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/create_page_filed_type_input_layout"
@@ -118,11 +133,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:hint="insert Type"
+            android:hint="Insert Type"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input">
+            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_page_filed_type_input"
@@ -171,7 +186,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:hint="insert Description"
+            android:hint="Insert Description"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -218,7 +233,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="insert Special Needs"
+            android:hint="Insert Special Needs"
             app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

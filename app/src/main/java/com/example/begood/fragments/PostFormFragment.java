@@ -1,14 +1,17 @@
 package com.example.begood.fragments;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,7 +36,10 @@ import com.example.begood.models.Post;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -54,6 +61,7 @@ public class PostFormFragment extends Fragment {
     Post updatedPost;
     String defaultValue = "empty :(";
     Bitmap bitmap;
+    DatePickerDialog picker;
 
     public PostFormFragment() {
         // Required empty public constructor
@@ -75,7 +83,28 @@ public class PostFormFragment extends Fragment {
         locationTIEV = view.findViewById(R.id.create_page_filed_location_input);
         specialNeedsTIEV = view.findViewById(R.id.create_page_filed_needs_input);
         dateET = view.findViewById(R.id.create_page_filed_date_input);
+        dateET.setInputType(InputType.TYPE_NULL);
 
+        dateET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                dateET.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.show();
+                picker.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.rgb(204, 153, 255));
+                picker.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.rgb(204, 153, 255));
+            }
+        });
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,14 +155,14 @@ public class PostFormFragment extends Fragment {
 
         updatedPost.setTitle(getInputValue(titleTIEV));
         updatedPost.setDescription(getInputValue(descriptionTIEV));
-
         updatedPost.setType(getInputValue(typeTIEV));
         updatedPost.setLocation(getInputValue(locationTIEV));
         updatedPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
 
         if(dateET.getText().toString().isEmpty()){
-            updatedPost.setDate(new Date().toString());
+            String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+            updatedPost.setDate(currentDate);
         } else {
             updatedPost.setDate(dateET.getText().toString());
         }
