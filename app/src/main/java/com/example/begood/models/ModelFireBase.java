@@ -17,13 +17,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class ModelFireBase {
     public void getAllPosts(final Model.GetAllPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").get().addOnCompleteListener(task -> {
+        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        db.collection("posts").whereGreaterThanOrEqualTo("date", currentDate).orderBy("date").get().addOnCompleteListener(task -> {
             List<Post> data = new LinkedList<Post>();
 
             if (task.isSuccessful()){
