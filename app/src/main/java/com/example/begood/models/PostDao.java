@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface PostDao {
-    @Query("select * from posts order by time asc")
+    @Query("select * from posts order by date asc")
     List<Post> getAllPosts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

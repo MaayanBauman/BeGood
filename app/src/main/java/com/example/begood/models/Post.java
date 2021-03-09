@@ -13,7 +13,7 @@ public class Post implements Serializable {
     private String id;
     private String title;
     private String description;
-    private String time;
+    private String date;
     private String location;
     private String type;
     private String spacialNeeds;
@@ -34,8 +34,8 @@ public class Post implements Serializable {
         return this.description;
     }
 
-    public String getTime() {
-        return this.time;
+    public String getDate() {
+        return this.date;
     }
 
     public String getType() {
@@ -68,8 +68,8 @@ public class Post implements Serializable {
         this.description = description;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setType(String type) {

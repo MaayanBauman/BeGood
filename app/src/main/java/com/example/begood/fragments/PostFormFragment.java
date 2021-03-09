@@ -45,7 +45,7 @@ public class PostFormFragment extends Fragment {
     TextInputEditText typeTIEV;
     Button imageBtn;
     ImageView imageIV;
-    EditText timeEV;
+    EditText dateET;
     TextInputEditText locationTIEV;
     ProgressBar pb;
     Button cancelBtn;
@@ -74,7 +74,7 @@ public class PostFormFragment extends Fragment {
         typeTIEV = view.findViewById(R.id.create_page_filed_type_input);
         locationTIEV = view.findViewById(R.id.create_page_filed_location_input);
         specialNeedsTIEV = view.findViewById(R.id.create_page_filed_needs_input);
-        timeEV = view.findViewById(R.id.create_page_filed_date_input);
+        dateET = view.findViewById(R.id.create_page_filed_date_input);
 
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class PostFormFragment extends Fragment {
             typeTIEV.setText(updatedPost.getType());
             locationTIEV.setText(updatedPost.getLocation());
             specialNeedsTIEV.setText(updatedPost.getSpacialNeeds());
-            timeEV.setText(updatedPost.getTime());
+            dateET.setText(updatedPost.getDate());
             saveBtn.setText("Update");
         }
 
@@ -132,10 +132,10 @@ public class PostFormFragment extends Fragment {
         updatedPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
 
-        if(timeEV.getText().toString().isEmpty()){
-            updatedPost.setTime("" + new Date());
+        if(dateET.getText().toString().isEmpty()){
+            updatedPost.setDate(new Date().toString());
         } else {
-            updatedPost.setTime(timeEV.getText().toString());
+            updatedPost.setDate(dateET.getText().toString());
         }
         if(drawable == null){
             int w = 90, h = 45;

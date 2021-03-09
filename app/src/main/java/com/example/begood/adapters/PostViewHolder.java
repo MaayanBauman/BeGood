@@ -58,7 +58,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         currPost = post;
         this.title.setText(currPost.getTitle());
         this.description.setText(currPost.getDescription());
-        this.time.setText(currPost.getTime());
+        this.time.setText(currPost.getDate());
         this.location.setText(currPost.getLocation());
         this.spacialNeeds.setText(currPost.getSpacialNeeds());
         this.type.setText(currPost.getType());
