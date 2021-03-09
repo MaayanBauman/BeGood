@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "posts")
-public class Post {
+public class Post implements Serializable {
     @PrimaryKey
     @NonNull
     private String id;
@@ -18,9 +20,7 @@ public class Post {
     private String authorId;
     private String image;
 
-    public Post(){
-        this.setId("id" + Math.random());
-    }
+    public Post() {this.setId("id" + Math.random());}
 
     public String getId() {
         return this.id;

@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
 
-        LoginFragment.getAccount().getId();
         userPhoto = view.findViewById(R.id.profile_user_photo);
         userName = view.findViewById(R.id.profile_user_name);
         userMail =  view.findViewById(R.id.profile_user_mail);

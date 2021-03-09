@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -28,8 +29,8 @@ import androidx.navigation.Navigation;
 import com.example.begood.R;
 import com.example.begood.models.Model;
 import com.example.begood.models.Post;
-import com.example.begood.models.User;
 import com.google.android.material.textfield.TextInputEditText;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -50,9 +51,10 @@ public class AddPostFragment extends Fragment {
     Button cancelBtn;
     Button saveBtn;
     View view;
-    User currUser;
+    Post updatedPost;
     String defaultValue = "empty :(";
     Bitmap bitmap;
+
     public AddPostFragment() {
         // Required empty public constructor
     }
@@ -61,7 +63,7 @@ public class AddPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_create_new, container, false);
-        currUser = AddPostFragmentArgs.fromBundle(getArguments()).getUser();
+        updatedPost = AddPostFragmentArgs.fromBundle(getArguments()).getPost();
         setHasOptionsMenu(true);
 
         // Fragment members
@@ -89,7 +91,7 @@ public class AddPostFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(AddPostFragmentDirections.actionGlobalFeedFrg(currUser));
+                Navigation.findNavController(view).navigate(AddPostFragmentDirections.actionGlobalFeedFrg());
             }
         });
         // Save new post
@@ -101,6 +103,19 @@ public class AddPostFragment extends Fragment {
             }
         });
 
+        if (updatedPost.getTitle() != null) {
+            TextView pageTitle = view.findViewById(R.id.create_page_title);
+            pageTitle.setText("Update volunteer");
+            titleTIEV.setText(updatedPost.getTitle());
+            descriptionTIEV.setText(updatedPost.getDescription());
+            Picasso.get().load(updatedPost.getImage()).into(imageIV);
+            typeTIEV.setText(updatedPost.getType());
+            locationTIEV.setText(updatedPost.getLocation());
+            specialNeedsTIEV.setText(updatedPost.getSpacialNeeds());
+            timeEV.setText(updatedPost.getTime());
+            saveBtn.setText("Update");
+        }
+
         return view;
     }
 
@@ -109,20 +124,18 @@ public class AddPostFragment extends Fragment {
         cancelBtn.setEnabled(false);
         saveBtn.setEnabled(false);
 
-        final Post newPost = new Post();
-        newPost.setTitle(getInputValue(titleTIEV));
-        newPost.setDescription(getInputValue(descriptionTIEV));
+        updatedPost.setTitle(getInputValue(titleTIEV));
+        updatedPost.setDescription(getInputValue(descriptionTIEV));
 
-        newPost.setType(getInputValue(typeTIEV));
-        newPost.setLocation(getInputValue(locationTIEV));
-        newPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
+        updatedPost.setType(getInputValue(typeTIEV));
+        updatedPost.setLocation(getInputValue(locationTIEV));
+        updatedPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
-        newPost.setAuthorId(currUser.getId());
 
         if(timeEV.getText().toString().isEmpty()){
-            newPost.setTime("" + new Date());
+            updatedPost.setTime("" + new Date());
         } else {
-            newPost.setTime(timeEV.getText().toString());
+            updatedPost.setTime(timeEV.getText().toString());
         }
         if(drawable == null){
             int w = 90, h = 45;
@@ -132,14 +145,14 @@ public class AddPostFragment extends Fragment {
             bitmap = drawable.getBitmap();
         }
 
-        Model.instance.uploadImage(bitmap, newPost.getId(), new Model.UploadImageListener() {
+        Model.instance.uploadImage(bitmap, updatedPost.getId(), new Model.UploadImageListener() {
             @Override
             public void onComplete(String url) {
                 if (url == null) {
                     displayFailedError();
                 } else {
-                    newPost.setImage(url);
-                    Model.instance.AddPost(newPost, new Model.AddPostListener() {
+                    updatedPost.setImage(url);
+                    Model.instance.AddPost(updatedPost, new Model.AddPostListener() {
                         @Override
                         public void onComplete() {
                             Navigation.findNavController(view).popBackStack();

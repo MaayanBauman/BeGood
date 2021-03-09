@@ -8,9 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.begood.R;
+import com.example.begood.fragments.FeedFragmentDirections;
 import com.example.begood.fragments.LoginFragment;
 import com.example.begood.models.Model;
 import com.example.begood.models.Post;
@@ -34,6 +36,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ImageButton editPost;
     String userId;
     User currUser;
+    Post currPost;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -52,16 +55,17 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindData(Post post, int position) {
-        this.title.setText(post.getTitle());
-        this.description.setText(post.getDescription());
-        this.time.setText(post.getTime());
-        this.location.setText(post.getLocation());
-        this.spacialNeeds.setText(post.getSpacialNeeds());
-        this.type.setText(post.getType());
+        currPost = post;
+        this.title.setText(currPost.getTitle());
+        this.description.setText(currPost.getDescription());
+        this.time.setText(currPost.getTime());
+        this.location.setText(currPost.getLocation());
+        this.spacialNeeds.setText(currPost.getSpacialNeeds());
+        this.type.setText(currPost.getType());
         this.position = position;
-        this.setPhoto(post.getImage());
-        this.setSubscribe(post);
-        this.setAuthor(post.getAuthorId());
+        this.setPhoto(currPost.getImage());
+        this.setSubscribe(currPost);
+        this.setAuthor(currPost.getAuthorId());
     }
 
     private void setPhoto(String image) {
@@ -94,7 +98,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 subscribe.setEnabled(false);
-
                 if (isSubscribed) {
                     currUser.removeRegisteredPost(post);
                     subscribe.setText("subscribe");
@@ -125,13 +128,21 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     private void displayActions(String authorId) {
         if (authorId.compareTo(userId) == 0) {
-            deletePost.setVisibility(View.VISIBLE);
-            editPost.setVisibility(View.VISIBLE);
-            subscribe.setVisibility(View.GONE);
+            this.editPost.setVisibility(View.VISIBLE);
+            this.editPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // TODO
+                    Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(currPost));
+                }
+            });
+            this.deletePost.setVisibility(View.VISIBLE);
+            this.subscribe.setVisibility(View.GONE);
+
         } else {
-            deletePost.setVisibility(View.GONE);
-            editPost.setVisibility(View.GONE);
-            subscribe.setVisibility(View.VISIBLE);
+            this.deletePost.setVisibility(View.GONE);
+            this.editPost.setVisibility(View.GONE);
+            this.subscribe.setVisibility(View.VISIBLE);
         }
     }
 
@@ -141,15 +152,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 // TODO
                 // Model.instance.deletePost(post.getId(), null);
-            }
-        });
-    }
-
-    private void setEditOnClick(Post post) {
-        this.deletePost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // TODO
             }
         });
     }

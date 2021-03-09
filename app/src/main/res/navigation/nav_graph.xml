@@ -12,12 +12,6 @@
         <action
             android:id="@+id/action_feedFrg_to_addPostFrg"
             app:destination="@id/addPostFragment" />
-        <action
-            android:id="@+id/action_feedFrg_to_addPostFrg2"
-            app:destination="@id/addPostFragment" />
-        <argument
-            android:name="user"
-            app:argType="com.example.begood.models.User" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -31,18 +25,14 @@
         android:label="Add new Volunteer"
         tools:layout="@layout/fragment_create_new" >
         <argument
-            android:name="user"
-            app:argType="com.example.begood.models.User" />
+            android:name="post"
+            app:argType="com.example.begood.models.Post" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.begood.fragments.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
-        <argument
-            android:name="user"
-            app:argType="com.example.begood.models.User" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
     <action
         android:id="@+id/action_global_profileFrg"
         app:destination="@id/profileFragment" />
@@ -55,11 +45,7 @@
         android:id="@+id/myVolunteersFragment"
         android:name="com.example.begood.fragments.MyVolunteersFragment"
         android:label="My Volunteers"
-        tools:layout="@layout/fragment_my_voluteers" >
-        <argument
-            android:name="user"
-            app:argType="com.example.begood.models.User" />
-    </fragment>
+        tools:layout="@layout/fragment_my_voluteers" />
     <action android:id="@+id/action_global_myVolunteersFrg" app:destination="@id/myVolunteersFragment" />
     <argument
         android:name="user"

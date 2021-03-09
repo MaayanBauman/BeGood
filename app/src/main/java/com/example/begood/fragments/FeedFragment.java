@@ -20,7 +20,6 @@ import com.example.begood.R;
 import com.example.begood.adapters.PostsAdapter;
 import com.example.begood.models.Model;
 import com.example.begood.models.Post;
-import com.example.begood.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.LinkedList;
@@ -31,7 +30,6 @@ public class FeedFragment extends Fragment {
     ProgressBar pb;
     FloatingActionButton addNewBtn;
     PostsAdapter adapter;
-    User user;
 
     public FeedFragment() {
         // Required empty public constructor
@@ -40,13 +38,12 @@ public class FeedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        user = FeedFragmentArgs.fromBundle(getArguments()).getUser();
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
         ((MainActivity)getActivity()).getSupportActionBar().show();
 
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
-        String greetingText = "שלום " + user.getFullName();
+        String greetingText = "שלום " + LoginFragment.getAccount().getDisplayName();
         greetingMessage.setText(greetingText);
         
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);
@@ -63,15 +60,18 @@ public class FeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
 
+        reloadData();
+
         // Navigate to create new post fragment
         addNewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(user));
+                Post newPost = new Post();
+                newPost.setAuthorId(LoginFragment.getAccount().getId());
+                Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(newPost));
             }
         });
 
-        reloadData();
         return view;
     }
 

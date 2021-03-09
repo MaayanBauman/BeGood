@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.begood.MainActivity;
-import com.example.begood.NavGraphDirections;
 import com.example.begood.R;
 import com.example.begood.models.Model;
 import com.example.begood.models.User;
@@ -146,8 +145,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
             String userId = ((GoogleSignInAccount) o).getId();
             Model.instance.GetUserById(userId, user -> {
                 if(user != null) {
-                    NavGraphDirections.ActionGlobalFeedFrg directions = LoginFragmentDirections.actionGlobalFeedFrg(user);
-                    Navigation.findNavController(view).navigate(directions);
+                    Navigation.findNavController(view).navigate(LoginFragmentDirections.actionGlobalFeedFrg());
                 } else {
                     Log.d("Error", "couldn't find user with ID:" + userId);
                 }
