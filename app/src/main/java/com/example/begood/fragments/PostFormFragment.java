@@ -37,7 +37,7 @@ import java.util.Date;
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
-public class AddPostFragment extends Fragment {
+public class PostFormFragment extends Fragment {
     // Fragment members
     TextInputEditText titleTIEV;
     TextInputEditText descriptionTIEV;
@@ -55,15 +55,15 @@ public class AddPostFragment extends Fragment {
     String defaultValue = "empty :(";
     Bitmap bitmap;
 
-    public AddPostFragment() {
+    public PostFormFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_create_new, container, false);
-        updatedPost = AddPostFragmentArgs.fromBundle(getArguments()).getPost();
+        view = inflater.inflate(R.layout.fragment_post_form, container, false);
+        updatedPost = PostFormFragmentArgs.fromBundle(getArguments()).getPost();
         setHasOptionsMenu(true);
 
         // Fragment members
@@ -91,10 +91,10 @@ public class AddPostFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(AddPostFragmentDirections.actionGlobalFeedFrg());
+                Navigation.findNavController(view).navigate(PostFormFragmentDirections.actionGlobalFeedFrg());
             }
         });
-        // Save new post
+        // Save post
         saveBtn = view.findViewById(R.id.create_page_submit_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override

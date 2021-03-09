@@ -21,9 +21,9 @@
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="com.example.begood.fragments.AddPostFragment"
+        android:name="com.example.begood.fragments.PostFormFragment"
         android:label="Add new Volunteer"
-        tools:layout="@layout/fragment_create_new" >
+        tools:layout="@layout/fragment_post_form" >
         <argument
             android:name="post"
             app:argType="com.example.begood.models.Post" />
