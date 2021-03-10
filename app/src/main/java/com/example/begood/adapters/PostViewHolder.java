@@ -20,6 +20,7 @@ import com.example.begood.models.User;
 import com.squareup.picasso.Picasso;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
+    public PostsAdapter.onDeletePostClick onDeletePost;
     int position;
     boolean isSubscribed;
 
@@ -128,8 +129,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     private void displayActions(String authorId) {
         if (authorId.compareTo(userId) == 0) {
-            this.editPost.setVisibility(View.VISIBLE);
             this.setEditOnClick();
+            this.setDeleteOnClick();
+            this.editPost.setVisibility(View.VISIBLE);
             this.deletePost.setVisibility(View.VISIBLE);
             this.subscribe.setVisibility(View.GONE);
 
@@ -140,12 +142,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    private void setDeleteOnClick(Post post) {
+    private void setDeleteOnClick() {
         this.deletePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
-                // Model.instance.deletePost(post.getId(), null);
+                Model.instance.deletePost(currPost.getId(), () -> {
+                    onDeletePost.deleteItem(currPost);
+                });
             }
         });
     }

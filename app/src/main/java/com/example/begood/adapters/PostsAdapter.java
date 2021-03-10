@@ -4,9 +4,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.begood.R;
+import com.example.begood.models.Model;
 import com.example.begood.models.Post;
 
 import java.util.LinkedList;
@@ -23,8 +25,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.volunteer_post, parent,false);
         PostViewHolder holder = new PostViewHolder(view);
+        holder.onDeletePost = this.deletePost;
         return holder;
     }
+
+    public interface onDeletePostClick {
+        void deleteItem(Post post);
+    }
+    private onDeletePostClick deletePost = new onDeletePostClick() {
+        @Override
+        public void deleteItem(Post post) {
+            data.remove(post);
+            notifyDataSetChanged();
+        }
+    };
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {

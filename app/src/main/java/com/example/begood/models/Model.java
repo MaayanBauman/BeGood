@@ -26,8 +26,8 @@ public class Model {
         modelFirebase.addPost(post, listener);
     }
 
-    interface  DeleteListener extends AddPostListener { }
-    public void deletePost(String postId, DeleteListener listener){
+    public interface DeleteListener { void onComplete(); }
+    public void deletePost(String postId, final DeleteListener listener){
         modelFirebase.delete(postId, listener);
     }
 

@@ -44,7 +44,7 @@ public class ModelSQL {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-                if(listener != null){
+                if (listener != null){
                     listener.onComplete();
                 }
             }
