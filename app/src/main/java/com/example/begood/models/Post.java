@@ -20,7 +20,7 @@ public class Post implements Serializable {
     private String authorId;
     private String image;
 
-    public Post() {this.setId("id" + Math.random());}
+    public Post() { this.setId("id" + Math.random()); }
 
     public String getId() {
         return this.id;
@@ -61,7 +61,7 @@ public class Post implements Serializable {
     }
 
     public void setTitle(String title) {
-        this.title= title;
+        this.title = title;
     }
 
     public void setDescription(String description) {
