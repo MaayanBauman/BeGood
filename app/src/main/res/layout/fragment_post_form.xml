@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:shadowColor="#040303"
         android:text="Create new volunteer"
@@ -34,222 +34,221 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <ScrollView
+        android:id="@+id/create_page_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_page_title"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/create_page_title">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_title_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Insert Title"
-            app:hintTextColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_title_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_location_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:hint="Insert Location"
-            app:hintTextColor="#000000"
-            app:layout_constraintEnd_toStartOf="@+id/create_page_filed_date_input_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_location_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_date_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:hint="Select Date"
-            app:hintTextColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/create_page_filed_location_input_layout"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout"
-            app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_date_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-<!--        <EditText-->
-<!--            android:id="@+id/create_page_filed_date"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:drawableLeft="@android:drawable/ic_menu_my_calendar"-->
-<!--            android:ems="10"-->
-<!--            android:hint="Select Date"-->
-<!--            android:textSize="16sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_location_input_layout"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/create_page_filed_location_input_layout" />-->
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_type_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:hint="Insert Type"
-            app:hintTextColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_type_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/create_page_filed_image_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:height="10dp"
-            android:fontFamily="sans-serif"
-            android:text="Choose Image"
-            android:textAllCaps="false"
-            android:textColor="#BA68C8"
-            android:textSize="14sp"
-            app:backgroundTint="#00FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_image"
-            app:layout_constraintEnd_toStartOf="@+id/create_page_filed_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/create_page_filed_image" />
-
-        <ImageView
-            android:id="@+id/create_page_filed_image"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="user image"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/create_page_filed_image_btn"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_input_layout"
-            tools:srcCompat="@drawable/avatar"
-            tools:visibility="visible" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_description_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:hint="Insert Description"
-            app:hintTextColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_needs_input_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_description_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="3"
-                android:maxLines="3"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/create_page_cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="#00FFFFFF"
-            android:text="Nevermind"
-            android:textAllCaps="false"
-            android:textColor="#040303"
-            app:backgroundTint="#00FFFFFF"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/create_page_submit_btn" />
-
-        <Button
-            android:id="@+id/create_page_submit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Let's Go "
-            android:textAllCaps="false"
-            app:backgroundTint="#BA68C8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/create_page_filed_needs_input_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Insert Special Needs"
-            app:hintTextColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/create_page_filed_type_input_layout">
+            app:layout_constraintTop_toBottomOf="@+id/create_page_title"
+            app:layout_constraintVertical_bias="0.0">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/create_page_filed_needs_input"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_title_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textColorHint="#000000" />
+                android:layout_marginTop="8dp"
+                android:hint="Insert Title"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_title_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_location_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Insert Location"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toStartOf="@+id/create_page_filed_date_input_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_location_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_date_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:hint="Select Date"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/create_page_filed_location_input_layout"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_title_input_layout"
+                app:startIconDrawable="@android:drawable/ic_menu_my_calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_date_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_type_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:hint="Insert Type"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_date_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_type_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/create_page_filed_image_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:height="10dp"
+                android:fontFamily="sans-serif"
+                android:text="Choose Image"
+                android:textAllCaps="false"
+                android:textColor="#863C93"
+                android:textSize="14sp"
+                app:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/create_page_filed_image"
+                app:layout_constraintEnd_toStartOf="@+id/create_page_filed_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/create_page_filed_image" />
+
+            <ImageView
+                android:id="@+id/create_page_filed_image"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="user image"
+                app:layout_constraintBottom_toTopOf="@+id/create_page_submit_btn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/create_page_filed_image_btn"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_description_input_layout"
+                tools:srcCompat="@drawable/avatar"
+                tools:visibility="visible" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_description_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:hint="Insert Description"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_needs_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_description_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="3"
+                    android:maxLines="3"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/create_page_filed_needs_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="Insert Special Needs"
+                app:hintTextColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_page_filed_type_input_layout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/create_page_filed_needs_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:singleLine="true"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/create_page_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="#00FFFFFF"
+                android:text="Nevermind"
+                android:textAllCaps="false"
+                android:textColor="#040303"
+                app:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/create_page_submit_btn" />
+
+            <Button
+                android:id="@+id/create_page_submit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Let's Go "
+                android:textAllCaps="false"
+                app:backgroundTint="#BA68C8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
