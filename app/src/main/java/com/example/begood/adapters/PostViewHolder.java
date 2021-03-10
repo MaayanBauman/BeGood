@@ -129,13 +129,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private void displayActions(String authorId) {
         if (authorId.compareTo(userId) == 0) {
             this.editPost.setVisibility(View.VISIBLE);
-            this.editPost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // TODO
-                    Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(currPost));
-                }
-            });
+            this.setEditOnClick();
             this.deletePost.setVisibility(View.VISIBLE);
             this.subscribe.setVisibility(View.GONE);
 
@@ -152,6 +146,15 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 // TODO
                 // Model.instance.deletePost(post.getId(), null);
+            }
+        });
+    }
+
+    private void setEditOnClick() {
+        this.editPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(currPost));
             }
         });
     }
