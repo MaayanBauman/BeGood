@@ -64,7 +64,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
 
         TextView textView = (TextView) signInButton.getChildAt(0);
         textView.setText("התחברות עם חשבון גוגל");
-
         view.findViewById(R.id.login_button).setOnClickListener(this);
 
         return view;
@@ -123,7 +122,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
                             account.getDisplayName(),
                             account.getPhotoUrl().toString()
                     );
-                    Model.instance.AddUser(user, () -> {            // Signed in successfully, show authenticated UI.
+                    Model.instance.AddUser(user, () -> {
                         updateUI(account);
                     });
                 } else {
@@ -155,7 +154,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener , Se
         }
     }
 
-    public static GoogleSignInClient getmGoogleSignInClient(){
+    public static GoogleSignInClient getGoogleSignInClient(){
         return  mGoogleSignInClient;
     }
     public static GoogleSignInAccount getAccount(){

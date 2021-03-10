@@ -31,6 +31,7 @@ public class ProfileFragment extends Fragment {
     ImageView userPhoto;
     TextView userName;
     TextView userMail;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
 
+        // Set user data on profile fragment
         userPhoto = view.findViewById(R.id.profile_user_photo);
         userName = view.findViewById(R.id.profile_user_name);
         userMail =  view.findViewById(R.id.profile_user_mail);
@@ -48,10 +50,11 @@ public class ProfileFragment extends Fragment {
         userMail.setText(LoginFragment.getAccount().getEmail());
         Picasso.get().load(LoginFragment.getAccount().getPhotoUrl()).placeholder(R.drawable.avatar).into(userPhoto);
 
-        RecyclerView rv = view.findViewById(R.id.profile_fragm_list);
         pb = view.findViewById(R.id.profile_progress_bar);
         pb.setVisibility(View.INVISIBLE);
+
         adapter = new PostsAdapter(getLayoutInflater());
+        RecyclerView rv = view.findViewById(R.id.profile_fragm_list);
         rv.setAdapter(adapter);
 
         // Create postsList with rv

@@ -45,13 +45,12 @@ public class FeedFragment extends Fragment {
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
         String greetingText = "שלום " + LoginFragment.getAccount().getDisplayName();
         greetingMessage.setText(greetingText);
-        
-        RecyclerView rv = view.findViewById(R.id.feedfragm_list);
-        pb = view.findViewById(R.id.feed_progress_bar);
-        addNewBtn = view.findViewById(R.id.feed_add_post_btn);
 
+        addNewBtn = view.findViewById(R.id.feed_add_post_btn);
+        pb = view.findViewById(R.id.feed_progress_bar);
         pb.setVisibility(View.INVISIBLE);
 
+        RecyclerView rv = view.findViewById(R.id.feedfragm_list);
         adapter = new PostsAdapter(getLayoutInflater());
         rv.setAdapter(adapter);
 

@@ -42,7 +42,6 @@ public class MyVolunteersFragment extends Fragment {
         pb.setVisibility(View.INVISIBLE);
 
         adapter = new PostsAdapter(getLayoutInflater());
-
         rv.setAdapter(adapter);
 
         // Create postsList with rv
