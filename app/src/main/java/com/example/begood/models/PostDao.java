@@ -1,5 +1,6 @@
 package com.example.begood.models;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,7 +12,7 @@ import java.util.List;
 @Dao
 public interface PostDao {
     @Query("select * from posts order by date asc")
-    List<Post> getAllPosts();
+    LiveData<List<Post>> getAllPosts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void InsertPost(Post post);

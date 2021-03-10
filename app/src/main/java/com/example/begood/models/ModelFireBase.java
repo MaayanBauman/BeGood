@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -24,16 +25,25 @@ import java.util.List;
 import java.util.Locale;
 
 public class ModelFireBase {
-    public void getAllPosts(final Model.GetAllPostsListener listener) {
+    public void getAllPosts(Long lastUpdated, final Model.GetAllPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Timestamp timestamp = new Timestamp(lastUpdated,0);
         String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-        db.collection("posts").whereGreaterThanOrEqualTo("date", currentDate).orderBy("date").get().addOnCompleteListener(task -> {
+
+        db.collection("posts")
+                //.whereGreaterThanOrEqualTo("lastUpdated", timestamp)
+                //.whereGreaterThanOrEqualTo("date", currentDate)
+                //.orderBy("date")
+                .get()
+                .addOnCompleteListener(task -> {
             List<Post> data = new LinkedList<Post>();
 
-            if (task.isSuccessful()){
+            if (task.isSuccessful()) {
                 for (DocumentSnapshot doc: task.getResult()) {
-                    Post post = doc.toObject(Post.class);
+                    Post post = new Post();
+                    post.fromMap(doc.getData());
                     data.add(post);
+                    // Post post = doc.toObject(Post.class);
                 }
             }
 
@@ -44,7 +54,7 @@ public class ModelFireBase {
     public void addPost(Post post, Model.AddPostListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("posts").document(post.getId())
-                .set(post).addOnSuccessListener(new OnSuccessListener<Void>() {
+                .set(post.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("TAG","post added successfully");
@@ -153,7 +163,7 @@ public class ModelFireBase {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(userId).get().addOnCompleteListener(task -> {
             User user = null;
-            List<Post> data = new LinkedList<Post>();
+            List<String> data = new LinkedList<String>();
 
             if (task.isSuccessful()) {
                 DocumentSnapshot doc = task.getResult();
@@ -162,7 +172,7 @@ public class ModelFireBase {
                     user = task.getResult().toObject(User.class);
 
                     for (Post post: user.getRegisteredPosts()) {
-                        data.add(post);
+                        data.add(post.getId());
                     }
                 }
             }

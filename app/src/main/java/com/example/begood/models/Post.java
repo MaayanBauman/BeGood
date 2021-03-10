@@ -4,7 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity(tableName = "posts")
 public class Post implements Serializable {
@@ -19,8 +24,9 @@ public class Post implements Serializable {
     private String spacialNeeds;
     private String authorId;
     private String image;
+    private Long lastUpdated;
 
-    public Post() {this.setId("id" + Math.random());}
+    public Post() { this.setId("id" + Math.random()); }
 
     public String getId() {
         return this.id;
@@ -89,4 +95,43 @@ public class Post implements Serializable {
     }
 
     public void setImage(String imageUrl) { this.image = imageUrl; }
+
+    public void setLastUpdated(Long lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("id", id);
+        result.put("title", title);
+        result.put("description", description);
+        result.put("date", date);
+        result.put("location", location);
+        result.put("type", type);
+        result.put("spacialNeeds", spacialNeeds);
+        result.put("authorId", authorId);
+        result.put("image", image);
+        result.put("lastUpdated", FieldValue.serverTimestamp());
+
+        return result;
+    }
+
+    public void fromMap(Map<String, Object> map){
+        id = (String)map.get("id");
+        title = (String)map.get("title");
+        description = (String)map.get("description");
+        date = (String)map.get("date");
+        location = (String)map.get("location");
+        type = (String)map.get("type");
+        spacialNeeds = (String)map.get("spacialNeeds");
+        authorId = (String)map.get("authorId");
+        image = (String)map.get("image");
+        Timestamp timestamp = (Timestamp)map.get("lastUpdated");
+        lastUpdated = timestamp.getSeconds();
+    }
 }

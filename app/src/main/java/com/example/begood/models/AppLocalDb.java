@@ -10,12 +10,13 @@ import com.example.begood.MyApplication;
 @Database(entities = { Post.class, User.class }, version = 1)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract PostDao postDao();
-    public abstract UserDao userDao();
 }
 
 public class AppLocalDb {
     static public AppLocalDbRepository db =
-            Room.databaseBuilder(MyApplication.context, AppLocalDbRepository.class,"posts.db")
+            Room.databaseBuilder(MyApplication.context,
+                    AppLocalDbRepository.class,
+                    "posts.db")
                     .fallbackToDestructiveMigration()
                     .build();
 }
