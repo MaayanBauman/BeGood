@@ -61,7 +61,7 @@ public class FeedFragment extends Fragment {
 
         pb.setVisibility(View.INVISIBLE);
 
-        adapter = new PostsAdapter(getLayoutInflater(), postList.getPostList().getValue());
+        adapter = new PostsAdapter(getLayoutInflater(), this.getNotDeletedPosts());
         rv.setAdapter(adapter);
 
         // Create postsList with rv
@@ -71,7 +71,8 @@ public class FeedFragment extends Fragment {
 
         postList.getPostList().observe(getViewLifecycleOwner(), new Observer<List<Post>>() {
             @Override
-            public void onChanged(List<Post> students) {
+            public void onChanged(List<Post> posts) {
+                adapter.data = getNotDeletedPosts();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -91,19 +92,34 @@ public class FeedFragment extends Fragment {
         return view;
     }
 
+    private List<Post> getNotDeletedPosts() {
+        List<Post> notDeletedPosts = new LinkedList<>();
+
+        if (this.postList.getPostList().getValue() != null) {
+            for (Post post : this.postList.getPostList().getValue()) {
+                if ((post != null) && !post.getIsDeleted()) {
+                    notDeletedPosts.add(post);
+                }
+            }
+        }
+
+        return notDeletedPosts;
+    }
+
     private void reloadData(){
         pb.setVisibility(View.VISIBLE);
         addNewBtn.setEnabled(false);
 
-        Model.instance.refreshAllPosts(new Model.GetAllStudentsListener() {
+        Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
                 // posts = data;
                 pb.setVisibility(View.INVISIBLE);
                 addNewBtn.setEnabled(true);
+                adapter.data = getNotDeletedPosts();
                 // swipeRefresh.setRefreshing(false);
                 // adapter.data = postList.getPostList();
-                // adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }

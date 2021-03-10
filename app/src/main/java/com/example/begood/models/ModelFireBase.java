@@ -28,12 +28,9 @@ public class ModelFireBase {
     public void getAllPosts(Long lastUpdated, final Model.GetAllPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Timestamp timestamp = new Timestamp(lastUpdated,0);
-        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
         db.collection("posts")
                 .whereGreaterThanOrEqualTo("lastUpdated", timestamp)
-                //.whereGreaterThanOrEqualTo("date", currentDate)
-                //.orderBy("date")
                 .get()
                 .addOnCompleteListener(task -> {
             List<Post> data = new LinkedList<Post>();
@@ -69,15 +66,9 @@ public class ModelFireBase {
         });
     }
 
-    public void delete(String postId, Model.DeleteListener listener) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("posts").document(postId)
-                .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                listener.onComplete();
-            }
-        });
+    public void deletePost(Post post, Model.AddPostListener listener) {
+        post.setIsDeleted(true);
+        addPost(post, listener);
     }
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
@@ -124,22 +115,8 @@ public class ModelFireBase {
         });
     }
 
-    public void updateUser(User user, Model.UpdateUserListener listener) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(user.getId())
-                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.d("TAG","user update successfully");
-                listener.onComplete();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("TAG","fail to update user :(");
-                listener.onComplete();
-            }
-        });
+    public void updateUser(User user, Model.AddUserListener listener) {
+        addUser(user, listener);
     }
 
     public void getUserById(@NonNull String id, Model.GetUserByIdListener listener) {

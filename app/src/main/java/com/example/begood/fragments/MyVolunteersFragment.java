@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MyVolunteersFragment extends Fragment {
-    // List<Post> posts = new LinkedList<>();
+    List<Post> posts = new LinkedList<>();
     PostsListViewModel postList;
     ProgressBar pb;
     PostsAdapter adapter;
@@ -58,7 +58,8 @@ public class MyVolunteersFragment extends Fragment {
 
         postList.getPostList().observe(getViewLifecycleOwner(), new Observer<List<Post>>() {
             @Override
-            public void onChanged(List<Post> students) {
+            public void onChanged(List<Post> posts) {
+                adapter.data = getUserRegisteredPosts();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -70,25 +71,29 @@ public class MyVolunteersFragment extends Fragment {
 
     private List<Post> getUserRegisteredPosts() {
         String userId = LoginFragment.getAccount().getId();
-        List<Post> registeredPosts = new LinkedList<>();
+        // List<Post> registeredPosts = new LinkedList<>();
 
         Model.instance.GetUserRegisteredPosts(userId, data -> {
             Post currPost;
 
             for (String postId: data) {
-                currPost = this.getPostById(postId);
+                currPost = this.getPostById(postId, this.postList.getPostList().getValue());
 
-                if (currPost != null) {
-                    registeredPosts.add(currPost);
+                if ((currPost != null)  && !currPost.getIsDeleted()) {
+                    if (this.getPostById(currPost.getId(), this.posts) == null) {
+                        posts.add(currPost);
+                    }
+                } else {
+                    posts.remove(currPost);
                 }
             }
         });
 
-        return registeredPosts;
+        return this.posts;
     }
 
-    private Post getPostById(String postId) {
-        for (Post post : this.postList.getPostList().getValue()) {
+    private Post getPostById(String postId, List<Post> list) {
+        for (Post post : list) {
             if (post.getId().equals(postId)) {
                 return post;
             }
@@ -101,15 +106,15 @@ public class MyVolunteersFragment extends Fragment {
         pb.setVisibility(View.VISIBLE);
         String userId = LoginFragment.getAccount().getId();
 
-        Model.instance.refreshAllPosts(new Model.GetAllStudentsListener() {
+        Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
                 // posts = data;
                 pb.setVisibility(View.INVISIBLE);
-                getUserRegisteredPosts();
+                adapter.data = getUserRegisteredPosts();
                 // swipeRefresh.setRefreshing(false);
                 // adapter.data = postList.getPostList();
-                // adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }

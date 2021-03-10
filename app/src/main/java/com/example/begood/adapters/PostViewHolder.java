@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     int position;
     boolean isSubscribed;
 
+    RelativeLayout postFragment;
     ImageView image;
     TextView title;
     TextView description;
@@ -41,6 +43,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
+        this.postFragment = itemView.findViewById((R.id.post_fragment));
         this.image = itemView.findViewById(R.id.post_image);
         this.title = itemView.findViewById(R.id.post_title);
         this.description = itemView.findViewById(R.id.post_description);
@@ -64,22 +67,22 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.spacialNeeds.setText(currPost.getSpacialNeeds());
         this.type.setText(currPost.getType());
         this.position = position;
-        this.setPhoto(currPost.getImage());
-        this.setSubscribe(currPost);
-        this.setAuthor(currPost.getAuthorId());
+        this.setPhoto();
+        this.setSubscribe();
+        this.setAuthor();
     }
 
-    private void setPhoto(String image) {
-        if (image != null) {
-            Picasso.get().load(image).placeholder(R.drawable.avatar).into(this.image);
+    private void setPhoto() {
+        if (currPost.getImage() != null) {
+            Picasso.get().load(currPost.getImage()).placeholder(R.drawable.avatar).into(this.image);
         }
     }
 
-    private void setSubscribe(Post post) {
+    private void setSubscribe() {
         Model.instance.GetUserById(userId, user -> {
             if (user != null) {
                 this.currUser = user;
-                this.isSubscribed = this.currUser.getPostIndexOnRegisteredPosts(post) != -1;
+                this.isSubscribed = this.currUser.getPostIndexOnRegisteredPosts(currPost) != -1;
 
                 if (this.isSubscribed) {
                     this.subscribe.setText("unsubscribe");
@@ -87,24 +90,24 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                     this.subscribe.setText("subscribe");
                 }
 
-                this.setSubscribeOnClick(post);
+                this.setSubscribeOnClick();
             } else {
                 Log.d("Error", "couldn't find user with ID:" + userId);
             }
         });
     }
 
-    private void setSubscribeOnClick(Post post) {
+    private void setSubscribeOnClick() {
         this.subscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 subscribe.setEnabled(false);
                 if (isSubscribed) {
-                    currUser.removeRegisteredPost(post);
+                    currUser.removeRegisteredPost(currPost);
                     subscribe.setText("subscribe");
                     isSubscribed = false;
                 } else {
-                    currUser.addRegisteredPost(post);
+                    currUser.addRegisteredPost(currPost);
                     subscribe.setText("unsubscribe");
                     isSubscribed = true;
                 }
@@ -116,19 +119,19 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    private void setAuthor(String authorId) {
-        Model.instance.GetUserById(authorId, user -> {
+    private void setAuthor() {
+        Model.instance.GetUserById(currPost.getAuthorId(), user -> {
             if (user != null) {
                 this.author.setText(user.getFullName());
                 this.displayActions(user.getId());
             } else {
-                Log.d("Error", "couldn't find user with ID:" + authorId);
+                Log.d("Error", "couldn't find user with ID:" + currPost.getAuthorId());
             }
         });
     }
 
     private void displayActions(String authorId) {
-        if (authorId.compareTo(userId) == 0) {
+        if (currPost.getAuthorId().compareTo(userId) == 0) {
             this.setEditOnClick();
             this.setDeleteOnClick();
             this.editPost.setVisibility(View.VISIBLE);
@@ -145,7 +148,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         this.deletePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Model.instance.deletePost(currPost.getId(), () -> {
+                Model.instance.deletePost(currPost, () -> {
                     onDeletePost.deleteItem(currPost);
                 });
             }

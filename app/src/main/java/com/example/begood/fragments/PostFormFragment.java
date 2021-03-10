@@ -159,13 +159,15 @@ public class PostFormFragment extends Fragment {
         updatedPost.setLocation(getInputValue(locationTIEV));
         updatedPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
-        if(dateET.getText().toString().isEmpty()){
+
+        if (dateET.getText().toString().isEmpty()){
             String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
             updatedPost.setDate(currentDate);
         } else {
             updatedPost.setDate(dateET.getText().toString());
         }
-        if(drawable == null){
+
+        if (drawable == null){
             int w = 90, h = 45;
             Bitmap.Config conf = Bitmap.Config.ARGB_8888;
             bitmap = Bitmap.createBitmap(w, h, conf); // this creates a MUTABLE bitmap
@@ -180,6 +182,8 @@ public class PostFormFragment extends Fragment {
                     displayFailedError();
                 } else {
                     updatedPost.setImage(url);
+                    updatedPost.setIsDeleted(false);
+
                     Model.instance.AddPost(updatedPost, new Model.AddPostListener() {
                         @Override
                         public void onComplete() {

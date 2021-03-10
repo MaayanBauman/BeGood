@@ -25,6 +25,7 @@ public class Post implements Serializable {
     private String authorId;
     private String image;
     private Long lastUpdated;
+    private Boolean isDeleted;
 
     public Post() { this.setId("id" + Math.random()); }
 
@@ -62,6 +63,14 @@ public class Post implements Serializable {
 
     public String getImage() {
         return this.image;
+    }
+
+    public Long getLastUpdated() {
+        return this.lastUpdated;
+    }
+
+    public Boolean getIsDeleted() {
+        return this.isDeleted;
     }
 
     public void setId(@NonNull String id) {
@@ -104,8 +113,8 @@ public class Post implements Serializable {
         this.lastUpdated = lastUpdated;
     }
 
-    public Long getLastUpdated() {
-        return lastUpdated;
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public Map<String, Object> toMap() {
@@ -121,6 +130,7 @@ public class Post implements Serializable {
         result.put("authorId", authorId);
         result.put("image", image);
         result.put("lastUpdated", FieldValue.serverTimestamp());
+        result.put("isDeleted", isDeleted);
 
         return result;
     }
@@ -137,5 +147,6 @@ public class Post implements Serializable {
         image = (String)map.get("image");
         Timestamp timestamp = (Timestamp)map.get("lastUpdated");
         lastUpdated = timestamp.getSeconds();
+        isDeleted = (Boolean) map.get("isDeleted");
     }
 }

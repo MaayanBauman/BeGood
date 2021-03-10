@@ -35,6 +35,7 @@ public class ProfileFragment extends Fragment {
     ImageView userPhoto;
     TextView userName;
     TextView userMail;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -67,7 +68,8 @@ public class ProfileFragment extends Fragment {
 
         postList.getPostList().observe(getViewLifecycleOwner(), new Observer<List<Post>>() {
             @Override
-            public void onChanged(List<Post> students) {
+            public void onChanged(List<Post> posts) {
+                adapter.data = getUserUploadPosts();
                 adapter.notifyDataSetChanged();
             }
         });
@@ -81,7 +83,7 @@ public class ProfileFragment extends Fragment {
         List<Post> uploadPosts = new LinkedList<>();
 
         for (Post post: this.postList.getPostList().getValue()) {
-            if (post.getAuthorId().compareTo(userId) == 0) {
+            if ((post.getAuthorId().compareTo(userId) == 0) && !post.getIsDeleted()) {
                 uploadPosts.add(post);
             }
         }
@@ -91,17 +93,17 @@ public class ProfileFragment extends Fragment {
 
     void reloadData(){
         pb.setVisibility(View.VISIBLE);
-        String userId = LoginFragment.getAccount().getId();
+        // String userId = LoginFragment.getAccount().getId();
 
-        Model.instance.refreshAllPosts(new Model.GetAllStudentsListener() {
+        Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
                 // posts = data;
                 pb.setVisibility(View.INVISIBLE);
-                getUserUploadPosts();
+                adapter.data = getUserUploadPosts();
                 // swipeRefresh.setRefreshing(false);
                 // adapter.data = postList.getPostList();
-                // adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }

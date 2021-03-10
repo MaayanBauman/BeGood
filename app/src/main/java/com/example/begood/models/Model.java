@@ -34,10 +34,10 @@ public class Model {
         return postList;
     }
 
-    public interface GetAllStudentsListener{
+    public interface GetAllPostListener{
         void onComplete();
     }
-    public void refreshAllPosts(final GetAllStudentsListener listener) {
+    public void refreshAllPosts(final GetAllPostListener listener) {
         final SharedPreferences sp = MyApplication.context.getSharedPreferences("TAG", Context.MODE_PRIVATE);
         long lastUpdated = sp.getLong("lastUpdated",0);
 
@@ -72,9 +72,8 @@ public class Model {
         });
     }
 
-    public interface DeleteListener { void onComplete(); }
-    public void deletePost(String postId, final DeleteListener listener){
-        modelFirebase.delete(postId, listener);
+    public void deletePost(Post post, final AddPostListener listener){
+        modelFirebase.deletePost(post, listener);
     }
 
     public interface UploadImageListener extends Listener<String> { }
@@ -87,8 +86,7 @@ public class Model {
         modelFirebase.addUser(user, listener);
     }
 
-    public interface UpdateUserListener { void onComplete(); }
-    public void UpdateUser(User user, final UpdateUserListener listener) {
+    public void UpdateUser(User user, final AddUserListener listener) {
         modelFirebase.updateUser(user, listener);
     }
 
