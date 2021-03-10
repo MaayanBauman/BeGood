@@ -13,18 +13,18 @@ public class PostArrayConverter {
     private static Gson gson = new Gson();
 
     @TypeConverter
-    public static List<Post> stringToPostsList(String data) {
+    public static List<String> stringToPostsList(String data) {
         if (data == null) {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Post>>() {}.getType();
+        Type listType = new TypeToken<List<String>>() {}.getType();
 
         return gson.fromJson(data, listType);
     }
 
     @TypeConverter
-    public static String PostsListToString(List<Post> someObjects) {
+    public static String PostsListToString(List<String> someObjects) {
         return gson.toJson(someObjects);
     }
 }

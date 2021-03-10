@@ -151,22 +151,23 @@ public class ModelFireBase {
 
     public void getUserRegisteredPosts(@NonNull String userId, final Model.GetUserRegisteredPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(userId).get().addOnCompleteListener(task -> {
+        db.collection("users").document(userId).get().addOnCompleteListener(usersTask -> {
             User user = null;
             List<Post> data = new LinkedList<Post>();
-
-            if (task.isSuccessful()) {
-                DocumentSnapshot doc = task.getResult();
-
-                if (doc != null) {
-                    user = task.getResult().toObject(User.class);
-
-                    for (Post post: user.getRegisteredPosts()) {
-                        data.add(post);
-                    }
+            if (usersTask.isSuccessful()) {
+                DocumentSnapshot usersDoc = usersTask.getResult();
+                if (usersDoc != null) {
+                    user = usersTask.getResult().toObject(User.class);
+                    db.collection("posts").whereIn("id", user.getRegisteredPosts()).get().addOnCompleteListener(postsTask -> {
+                        if (postsTask.isSuccessful()) {
+                            for (DocumentSnapshot doc: postsTask.getResult()) {
+                                Post post = doc.toObject(Post.class);
+                                data.add(post);
+                            }
+                        }
+                    });
                 }
             }
-
             listener.onComplete(data);
         });
     }
