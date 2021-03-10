@@ -74,7 +74,6 @@ public class PostFormFragment extends Fragment {
         updatedPost = PostFormFragmentArgs.fromBundle(getArguments()).getPost();
         setHasOptionsMenu(true);
 
-        // Fragment members
         titleTIEV = view.findViewById(R.id.create_page_filed_title_input);
         descriptionTIEV = view.findViewById(R.id.create_page_filed_description_input);
         imageBtn = view.findViewById(R.id.create_page_filed_image_btn);
@@ -115,7 +114,7 @@ public class PostFormFragment extends Fragment {
         pb = view.findViewById(R.id.create_page_progress_bar);
         pb.setVisibility(View.INVISIBLE);
 
-        // Cancel post
+        // Cancel
         cancelBtn = view.findViewById(R.id.create_page_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +122,7 @@ public class PostFormFragment extends Fragment {
                 Navigation.findNavController(view).navigate(PostFormFragmentDirections.actionGlobalFeedFrg());
             }
         });
+
         // Save post
         saveBtn = view.findViewById(R.id.create_page_submit_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -153,13 +153,13 @@ public class PostFormFragment extends Fragment {
         cancelBtn.setEnabled(false);
         saveBtn.setEnabled(false);
 
+        // Get Inserted data or default values
         updatedPost.setTitle(getInputValue(titleTIEV));
         updatedPost.setDescription(getInputValue(descriptionTIEV));
         updatedPost.setType(getInputValue(typeTIEV));
         updatedPost.setLocation(getInputValue(locationTIEV));
         updatedPost.setSpacialNeeds(getInputValue(specialNeedsTIEV));
         BitmapDrawable drawable = (BitmapDrawable)imageIV.getDrawable();
-
         if(dateET.getText().toString().isEmpty()){
             String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
             updatedPost.setDate(currentDate);
@@ -168,7 +168,7 @@ public class PostFormFragment extends Fragment {
         }
         if(drawable == null){
             int w = 90, h = 45;
-            Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
+            Bitmap.Config conf = Bitmap.Config.ARGB_8888;
             bitmap = Bitmap.createBitmap(w, h, conf); // this creates a MUTABLE bitmap
         } else {
             bitmap = drawable.getBitmap();
@@ -201,7 +201,6 @@ public class PostFormFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        Log.d("TAG","add post menu");
         menu.clear();
         inflater.inflate(R.menu.add_post_menu, menu);
     }
@@ -223,7 +222,7 @@ public class PostFormFragment extends Fragment {
     private void editImage() {
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Choose your profile picture");
+        builder.setTitle("Choose picture");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
@@ -238,7 +237,6 @@ public class PostFormFragment extends Fragment {
                 }
             }
         });
-
         builder.show();
     }
 
@@ -271,7 +269,6 @@ public class PostFormFragment extends Fragment {
                             }
                         }
                     }
-
                     break;
             }
         }
