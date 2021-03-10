@@ -20,6 +20,7 @@ public class LogoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // Logout from app
         LoginFragment.getGoogleSignInClient().signOut();
     }

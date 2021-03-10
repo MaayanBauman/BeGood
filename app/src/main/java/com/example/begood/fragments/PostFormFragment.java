@@ -44,7 +44,6 @@ import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class PostFormFragment extends Fragment {
-    // Fragment members
     TextInputEditText titleTIEV;
     TextInputEditText descriptionTIEV;
     TextInputEditText specialNeedsTIEV;
@@ -62,13 +61,10 @@ public class PostFormFragment extends Fragment {
     Bitmap bitmap;
     DatePickerDialog picker;
 
-    public PostFormFragment() {
-        // Required empty public constructor
-    }
+    public PostFormFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_post_form, container, false);
         updatedPost = PostFormFragmentArgs.fromBundle(getArguments()).getPost();
         setHasOptionsMenu(true);
@@ -90,7 +86,8 @@ public class PostFormFragment extends Fragment {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
                 int year = calendar.get(Calendar.YEAR);
-                // date picker dialog
+
+                // Date picker dialog
                 picker = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override

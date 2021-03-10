@@ -30,17 +30,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FeedFragment extends Fragment {
-    // List<Post> posts = new LinkedList<>();
     PostsListViewModel postList;
 
     ProgressBar pb;
     FloatingActionButton addNewBtn;
     PostsAdapter adapter;
-    // SwipeRefreshLayout swipeRefresh;
 
-    public FeedFragment() {
-        // Required empty public constructor
-    }
+    public FeedFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +81,8 @@ public class FeedFragment extends Fragment {
             public void onClick(View view) {
                 Post newPost = new Post();
                 newPost.setAuthorId(LoginFragment.getAccount().getId());
-                Navigation.findNavController(view).navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(newPost));
+                Navigation.findNavController(view)
+                        .navigate(FeedFragmentDirections.actionFeedFrgToAddPostFrg(newPost));
             }
         });
 
@@ -113,13 +110,8 @@ public class FeedFragment extends Fragment {
         Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
-                // posts = data;
                 pb.setVisibility(View.INVISIBLE);
                 addNewBtn.setEnabled(true);
-                adapter.data = getNotDeletedPosts();
-                // swipeRefresh.setRefreshing(false);
-                // adapter.data = postList.getPostList();
-                adapter.notifyDataSetChanged();
             }
         });
     }

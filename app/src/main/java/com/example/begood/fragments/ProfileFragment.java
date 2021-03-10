@@ -28,7 +28,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
-    // List<Post> posts = new LinkedList<>();
     PostsListViewModel postList;
     ProgressBar pb;
     PostsAdapter adapter;
@@ -36,13 +35,10 @@ public class ProfileFragment extends Fragment {
     TextView userName;
     TextView userMail;
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    public ProfileFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         setHasOptionsMenu(true);
 
@@ -93,17 +89,11 @@ public class ProfileFragment extends Fragment {
 
     void reloadData(){
         pb.setVisibility(View.VISIBLE);
-        // String userId = LoginFragment.getAccount().getId();
 
         Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
-                // posts = data;
                 pb.setVisibility(View.INVISIBLE);
-                adapter.data = getUserUploadPosts();
-                // swipeRefresh.setRefreshing(false);
-                // adapter.data = postList.getPostList();
-                adapter.notifyDataSetChanged();
             }
         });
     }

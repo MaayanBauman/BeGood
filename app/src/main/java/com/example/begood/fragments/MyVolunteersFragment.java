@@ -25,18 +25,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MyVolunteersFragment extends Fragment {
-    List<Post> posts = new LinkedList<>();
+    List<Post> registeredPosts = new LinkedList<>();
     PostsListViewModel postList;
     ProgressBar pb;
     PostsAdapter adapter;
 
-    public MyVolunteersFragment() {
-        // Required empty public constructor
-    }
+    public MyVolunteersFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_voluteers, container, false);
         setHasOptionsMenu(true);
 
@@ -71,7 +68,6 @@ public class MyVolunteersFragment extends Fragment {
 
     private List<Post> getUserRegisteredPosts() {
         String userId = LoginFragment.getAccount().getId();
-        // List<Post> registeredPosts = new LinkedList<>();
 
         Model.instance.GetUserRegisteredPosts(userId, data -> {
             Post currPost;
@@ -80,16 +76,16 @@ public class MyVolunteersFragment extends Fragment {
                 currPost = this.getPostById(postId, this.postList.getPostList().getValue());
 
                 if ((currPost != null)  && !currPost.getIsDeleted()) {
-                    if (this.getPostById(currPost.getId(), this.posts) == null) {
-                        posts.add(currPost);
+                    if (this.getPostById(currPost.getId(), this.registeredPosts) == null) {
+                        this.registeredPosts.add(currPost);
                     }
                 } else {
-                    posts.remove(currPost);
+                    this.registeredPosts.remove(currPost);
                 }
             }
         });
 
-        return this.posts;
+        return this.registeredPosts;
     }
 
     private Post getPostById(String postId, List<Post> list) {
@@ -104,17 +100,11 @@ public class MyVolunteersFragment extends Fragment {
 
     private void reloadData() {
         pb.setVisibility(View.VISIBLE);
-        String userId = LoginFragment.getAccount().getId();
 
         Model.instance.refreshAllPosts(new Model.GetAllPostListener() {
             @Override
             public void onComplete() {
-                // posts = data;
                 pb.setVisibility(View.INVISIBLE);
-                adapter.data = getUserRegisteredPosts();
-                // swipeRefresh.setRefreshing(false);
-                // adapter.data = postList.getPostList();
-                adapter.notifyDataSetChanged();
             }
         });
     }
