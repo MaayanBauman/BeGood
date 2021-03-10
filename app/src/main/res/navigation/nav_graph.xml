@@ -8,11 +8,7 @@
         android:id="@+id/feedFragment"
         android:name="com.example.begood.fragments.FeedFragment"
         android:label="All Volunteers"
-        tools:layout="@layout/fragment_feed">
-        <action
-            android:id="@+id/action_feedFrg_to_addPostFrg"
-            app:destination="@id/addPostFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_feed"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.begood.fragments.LoginFragment"
@@ -61,4 +57,5 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <action android:id="@+id/action_global_logoutFragment" app:destination="@id/logoutFragment" />
+    <action android:id="@+id/action_feedFrg_to_addPostFrg" app:destination="@id/addPostFragment" />
 </navigation>
