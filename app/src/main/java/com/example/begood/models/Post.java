@@ -60,14 +60,16 @@ public class Post implements Serializable {
         return this.authorId;
     }
 
-    public String getImage() { return this.image; }
+    public String getImage() {
+        return this.image;
+    }
 
     public void setId(@NonNull String id) {
         this.id = id;
     }
 
     public void setTitle(String title) {
-        this.title= title;
+        this.title = title;
     }
 
     public void setDescription(String description) {
@@ -94,7 +96,9 @@ public class Post implements Serializable {
         this.authorId = authorId;
     }
 
-    public void setImage(String imageUrl) { this.image = imageUrl; }
+    public void setImage(String imageUrl) {
+        this.image = imageUrl;
+    }
 
     public void setLastUpdated(Long lastUpdated) {
         this.lastUpdated = lastUpdated;

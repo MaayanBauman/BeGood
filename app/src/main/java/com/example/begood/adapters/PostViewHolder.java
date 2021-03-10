@@ -134,7 +134,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
             this.editPost.setVisibility(View.VISIBLE);
             this.deletePost.setVisibility(View.VISIBLE);
             this.subscribe.setVisibility(View.GONE);
-
         } else {
             this.deletePost.setVisibility(View.GONE);
             this.editPost.setVisibility(View.GONE);

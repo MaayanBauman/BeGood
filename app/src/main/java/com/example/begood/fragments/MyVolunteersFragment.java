@@ -73,15 +73,31 @@ public class MyVolunteersFragment extends Fragment {
         List<Post> registeredPosts = new LinkedList<>();
 
         Model.instance.GetUserRegisteredPosts(userId, data -> {
+            Post currPost;
+
             for (String postId: data) {
-                // TODO add post to list
+                currPost = this.getPostById(postId);
+
+                if (currPost != null) {
+                    registeredPosts.add(currPost);
+                }
             }
         });
 
         return registeredPosts;
     }
 
-    private void reloadData(){
+    private Post getPostById(String postId) {
+        for (Post post : this.postList.getPostList().getValue()) {
+            if (post.getId().equals(postId)) {
+                return post;
+            }
+        }
+
+        return null;
+    }
+
+    private void reloadData() {
         pb.setVisibility(View.VISIBLE);
         String userId = LoginFragment.getAccount().getId();
 

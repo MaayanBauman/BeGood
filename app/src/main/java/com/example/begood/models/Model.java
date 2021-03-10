@@ -101,9 +101,4 @@ public class Model {
     public void GetUserRegisteredPosts(String userId, final GetUserRegisteredPostsListener listener) {
         modelFirebase.getUserRegisteredPosts(userId, listener);
     }
-
-    public interface GetUserUploadPostsListener extends Listener<List<Post>> { }
-    public void GetUserUploadPosts(String userId, final GetUserUploadPostsListener listener) {
-        modelFirebase.GetUserUploadPosts(userId, listener);
-    }
 }

@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String _fullName;
     private String _image_url;
     @TypeConverters(PostArrayConverter.class)
-    private List<Post> _registeredPosts;
+    private List<String> _registeredPosts;
     public User(){
         this.setId("id" + Math.random());
     }
@@ -28,7 +28,7 @@ public class User implements Serializable {
         this.setEmail(email);
         this.setFullName(fullName);
         this.set_image_url(image_url);
-        ArrayList<Post> regPosts = new ArrayList<>();
+        ArrayList<String> regPosts = new ArrayList<>();
         this.setRegisteredPosts(regPosts);
     }
 
@@ -43,7 +43,7 @@ public class User implements Serializable {
         return this._fullName;
     }
     public String get_image_url() {return _image_url;}
-    public List<Post> getRegisteredPosts(){
+    public List<String> getRegisteredPosts(){
         return this._registeredPosts;
     }
 
@@ -60,9 +60,9 @@ public class User implements Serializable {
     public void set_image_url(String image_url){
         this._image_url = image_url;
     }
-    public void setRegisteredPosts(List<Post> registeredPosts) { this._registeredPosts = registeredPosts; }
+    public void setRegisteredPosts(List<String> registeredPosts) { this._registeredPosts = registeredPosts; }
 
-    public void addRegisteredPost(Post post) { this._registeredPosts.add(post); }
+    public void addRegisteredPost(Post post) { this._registeredPosts.add(post.getId()); }
 
     public void removeRegisteredPost(Post post) {
         int postInRegisteredPostsIndex = getPostIndexOnRegisteredPosts(post);
@@ -71,7 +71,7 @@ public class User implements Serializable {
 
     public int getPostIndexOnRegisteredPosts(Post post) {
         for (int i = 0; i < getRegisteredPosts().toArray().length;i++) {
-            if (post.getId().equals(getRegisteredPosts().get(i).getId())) {
+            if (post.getId().equals(getRegisteredPosts().get(i))) {
                 return i;
             }
         }
