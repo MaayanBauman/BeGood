@@ -28,7 +28,7 @@
         android:shadowColor="#040303"
         android:text="Create new volunteer"
         android:textAlignment="center"
-        android:textColor="#040303"
+        android:textColor="@color/teal_700"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

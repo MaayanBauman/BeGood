@@ -27,6 +27,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="My subscribe volunteers"
+        android:textColor="@color/teal_700"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/my_volunteers_fragm_list"
