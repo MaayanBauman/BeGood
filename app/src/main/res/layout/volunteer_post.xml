@@ -21,7 +21,6 @@
             android:layout_width="0dp"
             android:layout_height="120dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,11 +70,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
-            android:text="Date:"
+            android:text="@string/Date_title"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/post_time_value"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_description" />
@@ -86,7 +83,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
             android:autofillHints=""
             android:ems="10"
             android:enabled="false"
@@ -95,7 +91,6 @@
             android:textColor="#FF0C0909"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/post_location_title"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_date_title"
             app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
@@ -103,13 +98,14 @@
             android:id="@+id/post_location_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
-            android:text="Location:"
+            android:text="@string/Location_title"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/post_location_value"
-            app:layout_constraintStart_toStartOf="@+id/post_needs_title"
+            app:layout_constraintStart_toEndOf="@+id/post_time_value"
             app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
         <TextView
@@ -126,22 +122,21 @@
             android:textColor="#FF0C0909"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_location_title"
             app:layout_constraintTop_toBottomOf="@+id/post_description" />
 
         <TextView
             android:id="@+id/post_type_title"
-            android:layout_width="wrap_content"
+            android:layout_width="34dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
-            android:text="Type:"
+            android:text="@string/Type_title"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
+            app:layout_constraintTop_toBottomOf="@+id/post_date_title" />
 
         <TextView
             android:id="@+id/post_type_value"
@@ -149,16 +144,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="16dp"
             android:enabled="false"
             android:importantForAutofill="no"
             android:inputType="text"
             android:singleLine="true"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/post_type_title"
-            app:layout_constraintEnd_toStartOf="@+id/post_needs_title"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/post_type_title"
             app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
 
@@ -166,14 +159,15 @@
             android:id="@+id/post_needs_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
-            android:text="Special Needs:"
+            android:text="@string/Special_Needs_title"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/post_needs_value"
-            app:layout_constraintStart_toEndOf="@+id/post_type_value"
-            app:layout_constraintTop_toBottomOf="@+id/post_time_value" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_type_title" />
 
         <TextView
             android:id="@+id/post_needs_value"
@@ -192,7 +186,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/post_needs_title"
-            app:layout_constraintTop_toBottomOf="@+id/post_location_value" />
+            app:layout_constraintTop_toBottomOf="@+id/post_type_value" />
 
         <TextView
             android:id="@+id/post_author_title"
@@ -201,11 +195,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:focusable="false"
-            android:text="Author:"
+            android:text="@string/Author_title"
             android:textColor="#FF0C0909"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/post_author_value"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_type_value" />
+            app:layout_constraintTop_toBottomOf="@+id/post_needs_title" />
 
         <TextView
             android:id="@+id/post_author_value"
@@ -218,18 +213,17 @@
             android:inputType="text"
             android:singleLine="true"
             android:textColor="#FF0C0909"
+            android:textDirection="ltr"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/post_type_value"
             app:layout_constraintStart_toEndOf="@+id/post_author_title"
-            app:layout_constraintTop_toBottomOf="@+id/post_type_value" />
+            app:layout_constraintTop_toBottomOf="@+id/post_needs_value" />
 
         <Button
             android:id="@+id/post_subscribe_btn"
             android:layout_width="120dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:background="#B39DDB"
             android:fontFamily="sans-serif"
             android:insetLeft="0dp"
@@ -248,8 +242,9 @@
             app:iconPadding="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_author_value"
-            app:rippleColor="#FFFFFF" />
+            app:layout_constraintTop_toBottomOf="@+id/post_needs_value"
+            app:rippleColor="#FFFFFF"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -262,24 +257,26 @@
             android:id="@+id/delete_post_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:background="#00D1C4E9"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_author_value"
+            app:layout_constraintTop_toBottomOf="@+id/post_needs_value"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
         <ImageButton
             android:id="@+id/edit_post_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
             android:background="#00D1C4E9"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/delete_post_btn"
-            app:layout_constraintTop_toBottomOf="@+id/post_author_value"
+            app:layout_constraintTop_toBottomOf="@+id/post_needs_value"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

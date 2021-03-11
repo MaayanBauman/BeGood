@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.begood.MainActivity;
 import com.example.begood.R;
@@ -48,7 +47,7 @@ public class FeedFragment extends Fragment {
         postList = new ViewModelProvider(this).get(PostsListViewModel.class);
 
         TextView greetingMessage = view.findViewById(R.id.greeting_message);
-        String greetingText = "שלום " + LoginFragment.getAccount().getDisplayName();
+        String greetingText = "Hey " + LoginFragment.getAccount().getDisplayName();
         greetingMessage.setText(greetingText);
         
         RecyclerView rv = view.findViewById(R.id.feedfragm_list);

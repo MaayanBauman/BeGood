@@ -57,7 +57,7 @@ public class PostFormFragment extends Fragment {
     Button saveBtn;
     View view;
     Post updatedPost;
-    String defaultValue = "empty :(";
+    String defaultValue = "none :(";
     Bitmap bitmap;
     DatePickerDialog picker;
 
