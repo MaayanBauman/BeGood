@@ -20,19 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <com.mikhaellopez.circularimageview.CircularImageView-->
-<!--        android:layout_width="120dp"-->
-<!--        android:layout_height="120dp"-->
-<!--        android:src="@tools:sample/avatars"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        app:civ_border_color="#3f51b5"-->
-<!--        app:civ_border_width="2dp"-->
-<!--        app:civ_shadow="true"-->
-<!--        app:civ_shadow_radius="10dp"-->
-<!--        app:civ_shadow_color="#3f51b5"/>-->
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_user_photo"
         android:layout_width="120dp"

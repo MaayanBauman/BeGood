@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.begood.MyApplication;
 
-@Database(entities = { Post.class, User.class }, version = 3)
+@Database(entities = { Post.class, User.class }, version = 4)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract PostDao postDao();
 }
