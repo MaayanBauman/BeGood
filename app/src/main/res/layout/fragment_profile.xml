@@ -34,18 +34,6 @@
         app:strokeWidth="1dp"
         tools:src="@tools:sample/avatars" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/profile_user_photo"-->
-<!--        android:layout_width="120dp"-->
-<!--        android:layout_height="120dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:src="@tools:sample/avatars" />-->
-
     <TextView
         android:id="@+id/profile_user_name"
         android:layout_width="0dp"
