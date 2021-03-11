@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class ModelSQL {
-    // public interface GetAllPostsListener{ void onComplete(List<Post> data); }
     public LiveData<List<Post>> getAllPosts() {
         return AppLocalDb.db.postDao().getAllPosts();
     }

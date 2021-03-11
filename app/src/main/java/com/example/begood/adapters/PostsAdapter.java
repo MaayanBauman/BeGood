@@ -4,20 +4,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.begood.R;
-import com.example.begood.models.Model;
 import com.example.begood.models.Post;
-import com.example.begood.viewModels.PostsListViewModel;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostViewHolder> {
     public List<Post> data = new LinkedList<>();
-    // PostsListViewModel data;
     LayoutInflater inflater;
 
     public PostsAdapter(LayoutInflater inflater, List<Post> postList) {

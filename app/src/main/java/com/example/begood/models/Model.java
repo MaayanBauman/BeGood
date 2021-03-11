@@ -24,7 +24,6 @@ public class Model {
     LiveData<List<Post>> postList;
     public interface GetAllPostsListener extends Listener<List<Post>> { }
     public LiveData<List<Post>> getAllPosts() {
-        // modelFirebase.getAllPosts(listener);
 
         if (postList == null) {
             postList = modelSql.getAllPosts();

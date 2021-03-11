@@ -6,10 +6,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,11 +16,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 public class ModelFireBase {
     public void getAllPosts(Long lastUpdated, final Model.GetAllPostsListener listener) {
@@ -40,7 +35,6 @@ public class ModelFireBase {
                     Post post = new Post();
                     post.fromMap(doc.getData());
                     data.add(post);
-                    // Post post = doc.toObject(Post.class);
                 }
             }
 
